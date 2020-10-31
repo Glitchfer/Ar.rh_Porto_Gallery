@@ -3,10 +3,10 @@
     <br />
     <br />
     <br />
-    <h1>About us</h1>
+    <h1>WHO AM I</h1>
     <hr />
     <h4 style="textAlign: left; marginLeft: 20px">
-      Petualangan wayang adalah...
+      Pribadi yang...
     </h4>
   </div>
 </template>

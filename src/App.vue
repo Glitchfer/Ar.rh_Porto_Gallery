@@ -3,13 +3,13 @@
     <div class="nav">
       <router-link
         to="/"
-        style="marginRight: 20px; color: white; fontWeight: bold;"
+        style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
         >Home</router-link
       >
       <router-link
         to="/about"
-        style="marginRight: 20px; color: white; fontWeight: bold;"
-        >About us</router-link
+        style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
+        >About me</router-link
       >
     </div>
     <router-view />
@@ -17,8 +17,11 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Dosis', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -31,7 +34,7 @@
   left: 0;
   width: 100%;
   color: white;
-  background-color: #0d3c6bb6;
+  background-color: #2b2a2a4b;
   text-align: right;
   display: flex;
   align-items: center;
