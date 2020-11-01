@@ -1,12 +1,14 @@
 <template>
   <div class="home">
+    <div class="pp">
+      <img src="../assets/img/ar.png" />
+    </div>
     <div class="jumbotron">
-      <img alt="pwlogo" src="../assets/img/Keroropoy.jpg" />
       <carousel
         :autoplay="true"
         :nav="false"
         :items="1"
-        style="display: flex; justifyContent: center; alignItems: center; width: 730px"
+        style="display: flex; justifyContent: center; alignItems: center; width: 730px; position: relative; left: 0px"
       >
         <div class="p1">
           <h2>HELLO THERE !</h2>
@@ -55,29 +57,38 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+.pp {
+  border-bottom: 3px solid white;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 630px;
+  border-radius: 0 0 50% 0;
+  z-index: 3;
+  overflow: hidden;
+}
+.pp img {
+  position: relative;
 }
 .jumbotron {
   display: flex;
   flex-direction: row;
-  padding: 50px 20px;
+  padding: 10px 30px;
   position: relative;
   z-index: 2;
-  width: 1000px;
+  height: 300px;
+  /* width: 100%; */
   background-color: rgba(235, 228, 211, 0.637);
   border-radius: 10px;
   box-shadow: 1px 5px 15px -1px rgba(0, 0, 0, 0.781);
+  box-sizing: border-box;
 }
-.home .jumbotron img {
-  opacity: 0.9;
-  margin: 10px 20px 10px 20px;
-  width: 230px;
-  height: 270px;
-  border-radius: 15px;
-  border: 1px solid black;
-  box-shadow: 1px 1px 15px -2px rgba(0, 0, 0, 0.781);
+.pwlogo {
+  display: none;
 }
 .p1 {
   font-size: 18px;
@@ -91,7 +102,7 @@ export default {
   justify-content: center;
   margin: 0 auto 30px;
   width: 100%;
-
+  position: relative;
   box-sizing: border-box;
   padding: 0 20px;
 }
