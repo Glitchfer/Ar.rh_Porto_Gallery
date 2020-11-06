@@ -11,6 +11,11 @@
         style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
         >About me</router-link
       >
+      <router-link
+        to="/canvas"
+        style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
+        >Canvas</router-link
+      >
     </div>
     <router-view />
   </div>
