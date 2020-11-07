@@ -1,4 +1,5 @@
 <template>
+  <!-- <div id="home"> -->
   <div id="home" v-on:mousemove="updateCoordinates">
     <h1>mouse cordinates</h1>
     <div class="row">
@@ -46,7 +47,7 @@
       <kinesis-element
         :strength="x < 129 || x > 1150 || y < 175 || y > 570 ? 0 : 80"
       >
-        <h1 class="ab">I'am Arif</h1>
+        <h1 class="ab">I'Am Arif</h1>
       </kinesis-element>
     </kinesis-container>
     <div id="cursor" :style="{ left: `${x}px`, top: `${y}px` }"></div>
@@ -58,13 +59,11 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
     return {
-      counter: 0,
-      cursor: document.getElementById('cursor'),
+      // cursor: document.getElementById('cursor'),
       x: 0,
       y: 0
       // rotate: 0
@@ -103,17 +102,19 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  cursor: none;
   overflow: hidden;
+  padding-top: 50px;
 }
+
 h1 {
   position: relative;
   z-index: 5;
-  margin-top: 50px;
+  /* margin-top: 150px; */
   color: black;
   padding: 10px 20px;
 }
 .row {
+  background-color: white;
   color: black;
   padding: 0 20px;
   margin-bottom: 10px;
@@ -160,6 +161,16 @@ img {
   height: 4vw;
   left: 10%;
   top: 25%;
+  animation: crc 5s ease-in-out infinite;
+  animation-direction: alternate;
+}
+@keyframes crc {
+  0% {
+    top: 25%;
+  }
+  100% {
+    top: 45%;
+  }
 }
 
 .circle.circle-purple1 {
@@ -188,24 +199,23 @@ img {
   left: 60%;
 }
 #cursor {
-  background-color: black;
-  position: absolute;
-  width: 20px;
-  height: 20px;
+  background-color: rgb(2, 2, 2);
+  position: fixed;
+  width: 10px;
+  height: 10px;
   box-sizing: border-box;
-  /* transition: 0.1s; */
+  transition: 0.1s;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99;
 }
-
 h1:hover ~ #cursor,
 [class|='container']:hover ~ #cursor,
 [class|='row']:hover ~ #cursor {
   width: 50px;
   height: 50px;
-  border: 5px dotted rgb(0, 0, 0);
+  border: 1px dashed rgb(0, 0, 0);
   animation: animate 5s linear infinite;
 }
 @keyframes animate {
@@ -217,13 +227,12 @@ h1:hover ~ #cursor,
   }
 }
 
-h1:hover ~ #cursor,
-[class|='row']:hover ~ #cursor {
-  background-color: rgba(255, 255, 255, 0);
+h1:hover ~ #cursor {
+  background-color: rgba(0, 0, 0, 0);
 }
 
+[class|='row']:hover ~ #cursor,
 [class|='container']:hover ~ #cursor {
-  border: 5px dotted rgb(247, 243, 243);
   background-color: rgb(0, 0, 0);
   filter: invert(100%);
   mix-blend-mode: difference;

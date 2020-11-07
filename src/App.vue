@@ -1,25 +1,65 @@
 <template>
-  <div id="app">
-    <div class="nav">
+  <div id="app" v-on:mousemove="updateCoordinates">
+    <nav>
       <router-link
         to="/"
-        style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
+        class="rl"
+        style="marginRight: 20px; color:  rgb(0, 0, 0); fontWeight: bold; textDecoration: none; "
         >Home</router-link
       >
       <router-link
         to="/about"
-        style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
+        class="rl"
+        style="marginRight: 20px; color:  rgb(0, 0, 0); fontWeight: bold; textDecoration: none; "
         >About me</router-link
       >
       <router-link
         to="/canvas"
-        style="marginRight: 20px; color: white; fontWeight: bold; textDecoration: none;"
+        class="rl"
+        style="marginRight: 0px; color:  rgb(0, 0, 0); fontWeight: bold; textDecoration: none; "
         >Canvas</router-link
       >
-    </div>
+    </nav>
+    <div id="cursor" :style="{ left: `${x}px`, top: `${y}px` }"></div>
+    <!-- <div class="nav">
+      <router-link
+        to="/"
+        style="marginRight: 20px; color:  rgb(141, 141, 141); fontWeight: bold; textDecoration: none;"
+        >Home</router-link
+      >
+      <router-link
+        to="/about"
+        style="marginRight: 20px; color:  rgb(141, 141, 141); fontWeight: bold; textDecoration: none;"
+        >About me</router-link
+      >
+      <router-link
+        to="/canvas"
+        style="marginRight: 20px; color:  rgb(141, 141, 141); fontWeight: bold; textDecoration: none;"
+        >Canvas</router-link
+      >
+    </div> -->
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      curs: document.getElementById('cursor'),
+      x: 0,
+      y: 0
+    }
+  },
+  mounted() {},
+  methods: {
+    updateCoordinates: function(event) {
+      this.x = event.clientX
+      this.y = event.clientY
+    }
+  }
+}
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
@@ -30,20 +70,51 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #bd3b3b;
+  cursor: none;
 }
-.nav {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: white;
-  background-color: #2b2a2a4b;
-  text-align: right;
+
+nav {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
-  height: 56px;
+  padding: 10px 10px;
+  position: fixed;
+  top: 20px;
+  right: 50px;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2;
+}
+#cursor {
+  background-color: rgb(2, 2, 2);
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99;
+}
+nav:hover ~ #cursor {
+  width: 50px;
+  height: 50px;
+  animation: animate 5s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+nav:hover ~ #cursor {
+  border: 1px dashed rgb(247, 243, 243);
+  filter: invert(100%);
+  mix-blend-mode: difference;
 }
 </style>
