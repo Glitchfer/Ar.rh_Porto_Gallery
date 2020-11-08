@@ -18,8 +18,8 @@
         fill="yellow"
       />
     </svg>
-    <div class="row">
-      <div class="col-8">
+    <div class="row nested">
+      <div class="col-12">
         <h3>Nested draggable</h3>
         <nested-draggable :tasks="list" />
       </div>
@@ -96,8 +96,8 @@
         <div v-for="text in exampleList2" :key="text">{{ text }}</div>
       </draggable>
     </div>
-    <h6>Dragging around</h6>
     <div id="dragAround">
+      <h6>Dragging around</h6>
       <ul>
         <li
           :id="index"
@@ -110,6 +110,96 @@
           {{ item }}
         </li>
       </ul>
+    </div>
+    <div class="kanbanContainer mt-5">
+      <h1>Kanban</h1>
+      <div class="row">
+        <div class="col form-inline">
+          <b-form-input
+            v-model="newTask"
+            placeholder="Enter Task"
+            @keyup.enter="add"
+          ></b-form-input>
+          <b-button class="ml-2" variant="primary" @click="add">Add</b-button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-3">
+          <div class="p-2 alert alert-secondary">
+            <h3>Backlog</h3>
+            <draggable
+              class="List-group kanban-column"
+              :list="arrBacklog"
+              group="tasks"
+            >
+              <div
+                class="list-group-item"
+                v-for="element in arrBacklog"
+                :key="element.name"
+              >
+                {{ element.name }}
+              </div>
+            </draggable>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="p-2 alert alert-primary">
+            <h3>In Progress</h3>
+            <draggable
+              class="List-group kanban-column"
+              :list="arrInProgress"
+              group="tasks"
+            >
+              <div
+                class="list-group-item"
+                v-for="element in arrInProgress"
+                :key="element.name"
+              >
+                {{ element.name }}
+              </div>
+            </draggable>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="p-2 alert alert-warning">
+            <h3>Tested</h3>
+            <draggable
+              class="List-group kanban-column"
+              :list="arrTested"
+              group="tasks"
+            >
+              <div
+                class="list-group-item"
+                v-for="element in arrTested"
+                :key="element.name"
+              >
+                {{ element.name }}
+              </div>
+            </draggable>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="p-2 alert alert-success">
+            <h3>Done</h3>
+            <draggable
+              class="List-group kanban-column"
+              :list="arrDone"
+              group="tasks"
+            >
+              <div
+                class="list-group-item"
+                v-for="element in arrDone"
+                :key="element.name"
+              >
+                {{ element.name }}
+              </div>
+            </draggable>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -172,7 +262,17 @@ export default {
       exampleList: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'],
       exampleList2: ['Card 1', 'Card 2', 'Card 3', 'Card 4', 'Card 5'],
       itemList: ['apple', 'banana', 'mango'],
-      pickedUp: false
+      pickedUp: false,
+      newTask: '',
+      arrBacklog: [
+        { name: 'Code sign up page' },
+        { name: 'Test Dashboard' },
+        { name: 'Style Registation' },
+        { name: 'Help with desigm' }
+      ],
+      arrInProgress: [],
+      arrTested: [],
+      arrDone: []
     }
   },
   methods: {
@@ -194,6 +294,12 @@ export default {
     },
     drop(index) {
       this.pickedUp = false
+    },
+    add() {
+      if (this.newTask) {
+        this.arrBacklog.push({ name: this.newTask })
+        this.newTask = ''
+      }
     }
   },
   computed: {
@@ -209,6 +315,38 @@ export default {
 }
 </script>
 <style scoped>
+.about {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  border: 1px solid green;
+  animation: slide 0.5s ease-out 1 forwards;
+}
+@keyframes slide {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+/* -------Nested dragable------- */
+.nested {
+  color: black;
+  border: 1px solid black;
+  width: 865px;
+  background-image: linear-gradient(
+    135deg,
+    rgba(2, 2, 2, 0.966),
+    rgba(31, 238, 203, 0.61),
+    rgba(202, 82, 250, 0.856)
+  );
+  font-weight: 600;
+}
+.dragArea {
+  width: 100%;
+}
 .button {
   margin-top: 35px;
 }
@@ -284,6 +422,16 @@ export default {
   border-radius: 5px;
 }
 /* --------------------drag around ---------------- */
+#dragAround {
+  padding: 10px;
+  height: 310px;
+  width: 850px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  z-index: 30;
+}
 li {
   list-style: none;
   background-color: #313131;
@@ -295,5 +443,9 @@ li {
 li:hover {
   cursor: pointer;
   background-color: rgb(35, 77, 107);
+}
+/* -------------Kanban----------------------- */
+.kanban-column {
+  min-height: 300px;
 }
 </style>

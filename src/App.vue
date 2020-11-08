@@ -21,24 +21,22 @@
       >
     </nav>
     <div id="cursor" :style="{ left: `${x}px`, top: `${y}px` }"></div>
-    <!-- <div class="nav">
-      <router-link
-        to="/"
-        style="marginRight: 20px; color:  rgb(141, 141, 141); fontWeight: bold; textDecoration: none;"
-        >Home</router-link
-      >
-      <router-link
-        to="/about"
-        style="marginRight: 20px; color:  rgb(141, 141, 141); fontWeight: bold; textDecoration: none;"
-        >About me</router-link
-      >
-      <router-link
-        to="/canvas"
-        style="marginRight: 20px; color:  rgb(141, 141, 141); fontWeight: bold; textDecoration: none;"
-        >Canvas</router-link
-      >
-    </div> -->
     <router-view />
+    <!-- <h1>Dragging around</h1>
+    <div id="dragAround">
+      <ul>
+        <li
+          :id="index"
+          @mousemove="draging(index)"
+          @mousedown="drag(index)"
+          @mouseup="drop(index)"
+          v-for="(item, index) in itemList"
+          :key="index"
+        >
+          {{ item }}
+        </li>
+      </ul> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -48,7 +46,9 @@ export default {
     return {
       curs: document.getElementById('cursor'),
       x: 0,
-      y: 0
+      y: 0,
+      itemList: ['apple', 'banana', 'mango'],
+      pickedUp: false
     }
   },
   mounted() {},
@@ -56,6 +56,22 @@ export default {
     updateCoordinates: function(event) {
       this.x = event.clientX
       this.y = event.clientY
+    },
+    drag(index) {
+      const doc = document.getElementById(index)
+      doc.style.position = 'absolute'
+      this.pickedUp = true
+    },
+    draging(index) {
+      console.log(this.pickedUp)
+      const doc = document.getElementById(index)
+      if (this.pickedUp) {
+        doc.style.left = event.clientX - 260 + 'px'
+        doc.style.top = event.clientY - 20 + 'px'
+      }
+    },
+    drop(index) {
+      this.pickedUp = false
     }
   }
 }
@@ -72,6 +88,10 @@ export default {
   text-align: center;
   color: #bd3b3b;
   cursor: none;
+  /* height: 100vh;
+  border: 1px solid blueviolet;
+  background-color: bisque;
+  position: relative; */
 }
 
 nav {
@@ -86,6 +106,13 @@ nav {
   background-color: white;
   border-radius: 5px;
   z-index: 2;
+
+  background-image: linear-gradient(
+    45deg,
+    rgba(2, 2, 2, 0.966),
+    rgba(31, 238, 203, 0.61),
+    rgba(202, 82, 250, 0.856)
+  );
 }
 #cursor {
   background-color: rgb(2, 2, 2);
@@ -117,4 +144,18 @@ nav:hover ~ #cursor {
   filter: invert(100%);
   mix-blend-mode: difference;
 }
+/* --------------------drag around ---------------- */
+
+/* li {
+  list-style: none;
+  background-color: #313131;
+  color: white;
+  width: 500px;
+  text-align: center;
+  padding: 10px;
+}
+li:hover {
+  cursor: pointer;
+  background-color: rgb(35, 77, 107);
+} */
 </style>

@@ -105,7 +105,6 @@ export default {
   overflow: hidden;
   padding-top: 50px;
 }
-
 h1 {
   position: relative;
   z-index: 5;
@@ -116,10 +115,22 @@ h1 {
 .row {
   background-color: white;
   color: black;
-  padding: 0 20px;
+  padding: 10px 20px;
   margin-bottom: 10px;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    135deg,
+    rgba(2, 2, 2, 0.966),
+    rgba(31, 238, 203, 0.61),
+    rgba(202, 82, 250, 0.856)
+  );
 }
-
+#coordinates p {
+  margin: 0;
+  background-color: white;
+  padding: 0 5px;
+  border-radius: 5px;
+}
 img {
   width: 5rem;
 }
@@ -144,7 +155,12 @@ img {
 .container {
   width: 80%;
   padding: 10rem 0;
-  background-color: #111111;
+  background-image: linear-gradient(
+    135deg,
+    rgba(168, 19, 89, 0.877),
+    rgba(0, 0, 0, 0.993),
+    rgba(115, 14, 231, 0.692)
+  );
   position: relative;
   border-radius: 20px;
 }
@@ -247,6 +263,16 @@ h1:hover ~ #cursor {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: frog 5s ease-in-out alternate infinite;
+  transition: 0.1s;
+}
+@keyframes frog {
+  0% {
+    transform: translate(200px);
+  }
+  100% {
+    transform: translate(-200px);
+  }
 }
 .eyes {
   position: relative;
