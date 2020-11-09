@@ -30,7 +30,7 @@ export default {
 .landing h3 {
   text-align: left;
   position: absolute;
-  top: 20px;
+  top: 60px;
   left: 30px;
   padding: 10px;
   z-index: 2;
@@ -41,17 +41,18 @@ export default {
   font-size: 32px;
   font-weight: bold;
   height: 70px;
-  border: 1px solid rgb(13, 255, 215);
+  /* border: 1px solid rgb(13, 255, 215); */
   box-shadow: inset -1px 1px 1px #06fcb2e7, inset -1px 1px 2px #05fde9ec,
     -1px 1px 7px #f1f1f1ec;
+  mix-blend-mode: difference;
 }
 .landing h3:before {
   content: '';
-  width: 140px;
-  height: 45px;
+  width: 235px;
+  height: 275px;
   position: absolute;
-  top: -12px;
-  left: -45px;
+  top: -92px;
+  left: -63px;
   margin: 0;
   border: 1px solid rgb(13, 255, 215);
   background-image: linear-gradient(
@@ -59,23 +60,24 @@ export default {
     rgba(0, 0, 0, 0.966),
     rgba(0, 0, 0, 0.377)
   );
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
+  transform: rotate(-65deg);
 }
 .landing h3:after {
   content: '';
-  width: 175px;
-  height: 55px;
+  width: 195px;
+  height: 95px;
   position: absolute;
-  top: 32px;
-  left: -20px;
-  margin: 0;
-  border: 1px solid rgb(13, 255, 215);
+  top: -12px;
+  left: -10px;
+  /* border: 1px solid rgb(13, 255, 215); */
   background-image: linear-gradient(
     135deg,
     rgba(2, 2, 2, 0.966),
-    rgba(31, 238, 203, 0.377),
+    rgba(31, 238, 203, 0.671),
     rgba(2, 2, 2, 0.966)
   );
+  mix-blend-mode: overlay;
 }
 .hero {
   position: absolute;
@@ -130,6 +132,7 @@ export default {
   margin-top: -55px;
   width: 100%;
   filter: blur(9px);
+  transform: scale(2);
 }
 .hero::before {
   position: absolute;
