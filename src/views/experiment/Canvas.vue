@@ -1,5 +1,6 @@
 <template>
   <div class="canvas" @mousemove="newPointer">
+    <NavExp />
     <br />
     <br />
     <br />
@@ -23,7 +24,9 @@
 </template>
 
 <script>
+import NavExp from '../../components/expCompt/NavExp'
 export default {
+  name: 'Canvas',
   props: {},
   data() {
     return {
@@ -32,6 +35,9 @@ export default {
       x: 0,
       y: 0
     }
+  },
+  components: {
+    NavExp
   },
   watch: {},
   mounted() {
@@ -103,7 +109,6 @@ hr {
   width: 210px;
   height: 210px;
   background-color: rgb(245, 230, 99);
-  border: 10px solid rgba(136, 136, 136, 0.5);
   border-radius: 50%;
   touch-action: none;
   user-select: none;
@@ -118,11 +123,9 @@ hr {
   height: 20px;
   border: 2px solid rgb(255, 252, 252);
   box-sizing: border-box;
-  /* transition: 0.1s; */
   transform: translate(-50%, -50%);
   border-radius: 50%;
   pointer-events: none;
-  /* z-index: 2; */
 }
 
 h1:hover ~ #cursor,

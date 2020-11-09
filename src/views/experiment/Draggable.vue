@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <NavExp />
     <br />
     <br />
     <br />
@@ -207,8 +208,9 @@
 <script>
 import draggable from 'vuedraggable'
 import nestedDraggable from './infra/nested'
-import Board from '../components/Board'
-import Card from '../components/Card'
+import NavExp from '../../components/expCompt/NavExp'
+import Board from '../../components/expCompt/Board'
+import Card from '../../components/expCompt/Card'
 const message = [
   'vue.draggable',
   'draggable',
@@ -227,7 +229,8 @@ export default {
     draggable,
     nestedDraggable,
     Board,
-    Card
+    Card,
+    NavExp
   },
   data() {
     return {
@@ -320,7 +323,6 @@ export default {
   top: 0;
   right: 0;
   width: 0;
-  border: 1px solid green;
   animation: slide 0.5s ease-out 1 forwards;
 }
 @keyframes slide {
@@ -334,7 +336,6 @@ export default {
 /* -------Nested dragable------- */
 .nested {
   color: black;
-  border: 1px solid black;
   width: 865px;
   background-image: linear-gradient(
     135deg,

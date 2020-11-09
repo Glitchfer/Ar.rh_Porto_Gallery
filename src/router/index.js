@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Canvas from '../views/Canvas.vue'
+import Customizer from '../views/experiment/Customizer.vue'
+import Draggable from '../views/experiment/Draggable.vue'
+import Canvas from '../views/experiment/Canvas.vue'
 
 Vue.use(VueRouter)
 
@@ -13,9 +14,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/customizer',
+    name: 'Customizer',
+    component: Customizer
+  },
+  {
+    path: '/draggable',
+    name: 'Draggable',
+    component: Draggable
   },
   {
     path: '/canvas',
