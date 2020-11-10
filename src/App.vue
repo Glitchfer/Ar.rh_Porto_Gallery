@@ -37,7 +37,7 @@ export default {
   min-height: 100vh;
 }
 #pointer {
-  background-color: rgb(2, 2, 2);
+  background-color: rgb(255, 255, 255);
   position: fixed;
   width: 10px;
   height: 10px;
@@ -47,5 +47,6 @@ export default {
   border-radius: 50%;
   pointer-events: none;
   z-index: 99;
+  mix-blend-mode: difference;
 }
 </style>

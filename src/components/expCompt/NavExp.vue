@@ -1,6 +1,6 @@
 <template>
   <div id="exp" v-on:mousemove="updateCoordinates">
-    <nav>
+    <nav class="navv">
       <router-link
         to="/"
         class="rl"
@@ -81,7 +81,7 @@ export default {
   cursor: none;
 }
 
-nav {
+.navv {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -113,7 +113,7 @@ nav {
   pointer-events: none;
   z-index: 99;
 }
-nav:hover ~ #crsr {
+.navv:hover ~ #crsr {
   opacity: 1;
   width: 50px;
   height: 50px;
@@ -128,7 +128,7 @@ nav:hover ~ #crsr {
   }
 }
 
-nav:hover ~ #crsr {
+.navv:hover ~ #crsr {
   border: 1px dashed rgb(247, 243, 243);
   filter: invert(100%);
   mix-blend-mode: difference;

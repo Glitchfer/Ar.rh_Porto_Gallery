@@ -1,14 +1,17 @@
 <template>
   <div class="about">
-    <NavExp />
-    <br />
-    <br />
-    <br />
-    <h1>WHO AM I</h1>
-    <hr />
-    <h4 style="textAlign: left; marginLeft: 20px">
-      Pribadi yang...
-    </h4>
+    <section id="nab">
+      <NavExp />
+      <br />
+      <br />
+      <br />
+      <h1>WHO AM I</h1>
+      <hr />
+      <h4 style="textAlign: left; marginLeft: 20px">
+        Pribadi yang...
+      </h4>
+      <a href="#kanban">bottom</a>
+    </section>
     <svg width="100" height="100">
       <circle
         cx="50"
@@ -112,96 +115,99 @@
         </li>
       </ul>
     </div>
-    <div class="kanbanContainer mt-5">
-      <h1>Kanban</h1>
-      <div class="row">
-        <div class="col form-inline">
-          <b-form-input
-            v-model="newTask"
-            placeholder="Enter Task"
-            @keyup.enter="add"
-          ></b-form-input>
-          <b-button class="ml-2" variant="primary" @click="add">Add</b-button>
+    <section id="kanban">
+      <div class="kanbanContainer mt-5">
+        <h1>Kanban</h1>
+        <div class="row">
+          <div class="col form-inline">
+            <b-form-input
+              v-model="newTask"
+              placeholder="Enter Task"
+              @keyup.enter="add"
+            ></b-form-input>
+            <b-button class="ml-2" variant="primary" @click="add">Add</b-button>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <div class="p-2 alert alert-secondary">
+              <h3>Backlog</h3>
+              <draggable
+                class="List-group kanban-column"
+                :list="arrBacklog"
+                group="tasks"
+              >
+                <div
+                  class="list-group-item"
+                  v-for="element in arrBacklog"
+                  :key="element.name"
+                >
+                  {{ element.name }}
+                </div>
+              </draggable>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="p-2 alert alert-primary">
+              <h3>In Progress</h3>
+              <draggable
+                class="List-group kanban-column"
+                :list="arrInProgress"
+                group="tasks"
+              >
+                <div
+                  class="list-group-item"
+                  v-for="element in arrInProgress"
+                  :key="element.name"
+                >
+                  {{ element.name }}
+                </div>
+              </draggable>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="p-2 alert alert-warning">
+              <h3>Tested</h3>
+              <draggable
+                class="List-group kanban-column"
+                :list="arrTested"
+                group="tasks"
+              >
+                <div
+                  class="list-group-item"
+                  v-for="element in arrTested"
+                  :key="element.name"
+                >
+                  {{ element.name }}
+                </div>
+              </draggable>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="p-2 alert alert-success">
+              <h3>Done</h3>
+              <draggable
+                class="List-group kanban-column"
+                :list="arrDone"
+                group="tasks"
+              >
+                <div
+                  class="list-group-item"
+                  v-for="element in arrDone"
+                  :key="element.name"
+                >
+                  {{ element.name }}
+                </div>
+              </draggable>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-md-3">
-          <div class="p-2 alert alert-secondary">
-            <h3>Backlog</h3>
-            <draggable
-              class="List-group kanban-column"
-              :list="arrBacklog"
-              group="tasks"
-            >
-              <div
-                class="list-group-item"
-                v-for="element in arrBacklog"
-                :key="element.name"
-              >
-                {{ element.name }}
-              </div>
-            </draggable>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="p-2 alert alert-primary">
-            <h3>In Progress</h3>
-            <draggable
-              class="List-group kanban-column"
-              :list="arrInProgress"
-              group="tasks"
-            >
-              <div
-                class="list-group-item"
-                v-for="element in arrInProgress"
-                :key="element.name"
-              >
-                {{ element.name }}
-              </div>
-            </draggable>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="p-2 alert alert-warning">
-            <h3>Tested</h3>
-            <draggable
-              class="List-group kanban-column"
-              :list="arrTested"
-              group="tasks"
-            >
-              <div
-                class="list-group-item"
-                v-for="element in arrTested"
-                :key="element.name"
-              >
-                {{ element.name }}
-              </div>
-            </draggable>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="p-2 alert alert-success">
-            <h3>Done</h3>
-            <draggable
-              class="List-group kanban-column"
-              :list="arrDone"
-              group="tasks"
-            >
-              <div
-                class="list-group-item"
-                v-for="element in arrDone"
-                :key="element.name"
-              >
-                {{ element.name }}
-              </div>
-            </draggable>
-          </div>
-        </div>
-      </div>
-    </div>
+      <a href="#nab">top</a>
+    </section>
   </div>
 </template>
 
@@ -425,7 +431,7 @@ export default {
 /* --------------------drag around ---------------- */
 #dragAround {
   padding: 10px;
-  height: 310px;
+  height: 200px;
   width: 850px;
   position: absolute;
   top: 0;
