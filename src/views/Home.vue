@@ -15,6 +15,19 @@
         Arif Rahman
       </h1>
     </b-col>
+    <!-- <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="aboutMe"> -->
+    <div class="satu">
+      <a href="#">About me</a>
+    </div>
+    <div class="dua">
+      <a href="#">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, ad, rem
+        eos perferendis id dignissimos corrupti autem facere voluptate dicta a
+        repudiandae totam voluptates natus fugit quis corporis minus!
+        Temporibus.
+      </a>
+    </div>
+    <!-- </b-col> -->
   </b-container>
 </template>
 <script>
@@ -46,7 +59,7 @@ export default {
 .landing::before {
   content: '';
   width: 100%;
-  height: 35rem;
+  height: 31.5rem;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -109,7 +122,7 @@ export default {
   border-bottom: none;
 }
 .hero {
-  position: absolute;
+  position: relative;
   top: 0;
   width: 100%;
   height: 35rem;
@@ -118,16 +131,6 @@ export default {
   text-align: left;
   overflow: hidden;
 }
-/* .hero::before {
-  position: absolute;
-  border: 1px solid rgb(13, 255, 215);
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  content: '';
-  mix-blend-mode: multiply;
-} */
 .hero h1 {
   position: absolute;
   color: rgb(255, 255, 255);
@@ -171,15 +174,17 @@ export default {
 .hero img:nth-child(1) {
   margin-top: -55px;
   width: 100%;
+  height: 35rem;
   filter: blur(9px);
   transform: scale(2);
 }
 .hero::before {
   position: absolute;
+  top: 0;
   left: 0;
   content: '';
   width: 100%;
-  height: 100%;
+  height: 35rem;
   background-color: rgba(0, 0, 0, 0.178);
   z-index: 1;
   background-image: linear-gradient(
@@ -188,5 +193,13 @@ export default {
     rgba(31, 238, 203, 0.377),
     rgba(2, 2, 2, 0.966)
   );
+}
+.satu {
+  margin-top: 100px;
+  cursor: pointer;
+}
+.satu:hover ~ .dua {
+  background-color: rgb(31, 238, 203);
+  color: black;
 }
 </style>
