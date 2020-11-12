@@ -1,38 +1,39 @@
 <template>
   <div id="Navigate" class="Navigate">
+    <div class="dummyNavExpand"></div>
     <a
       href="#landing"
-      class="rl-1"
-      style="marginLeft: 20px; fontWeight: bold; textDecoration: none; "
-      @click="navNimate(1)"
+      class="r-1"
+      style="marginLeft: 20px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
+      @click="navNimate('home')"
       >Home</a
     >
     <a
       href="#about"
-      class="rl-2"
+      class="r-2"
       style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
-      @click="navNimate(2)"
+      @click="navNimate('about')"
       >About
     </a>
     <a
       href="#skill"
-      class="rl-3"
+      class="r-3"
       style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
-      @click="navNimate(3)"
+      @click="navNimate('skill')"
       >Skill</a
     >
     <a
-      href="#potofolio"
-      class="rl-4"
+      href="#portofolio"
+      class="r-4"
       style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
-      @click="navNimate(4)"
+      @click="navNimate('porto')"
       >Portofolio</a
     >
     <a
       href="#contact"
-      class="rl-5"
+      class="r-5"
       style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
-      @click="navNimate(5)"
+      @click="navNimate('contact')"
       >Contact</a
     >
   </div>
@@ -49,6 +50,44 @@ export default {
       document.getElementsByTagName('body')[0].onscroll = this.getScrollNum
       // document.getElementsByTagName('body')[0].addEventListener('scroll', this.getScrollNum)
     })
+
+    this.$nextTick(function() {
+      document.getElementsByTagName('body')[0].onmousemove = this.navSelect
+    })
+
+    if (this.$router.history.current.hash === '#about') {
+      document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      document.getElementsByClassName('r-2')[0].classList.add('rl-3')
+      document.documentElement.style.setProperty('--width-before', '56px')
+      document.documentElement.style.setProperty('--width-after', '51px')
+    } else if (this.$router.history.current.hash === '#skill') {
+      document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      document.getElementsByClassName('r-3')[0].classList.add('rl-3')
+      document.documentElement.style.setProperty('--width-before', '45px')
+      document.documentElement.style.setProperty('--width-after', '41px')
+    } else if (this.$router.history.current.hash === '#portofolio') {
+      document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      document.getElementsByClassName('r-4')[0].classList.add('rl-3')
+      document.documentElement.style.setProperty('--width-before', '83px')
+      document.documentElement.style.setProperty('--width-after', '79px')
+    } else if (this.$router.history.current.hash === '#contact') {
+      document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      document.getElementsByClassName('r-5')[0].classList.add('rl-3')
+      document.documentElement.style.setProperty('--width-before', '68px')
+      document.documentElement.style.setProperty('--width-after', '63.5px')
+    } else {
+      document.getElementsByClassName('r-1')[0].classList.add('rl')
+    }
+
+    // ================================================================================================
+    // ------cara merubah css variable property
+    // document.documentElement.style.setProperty('--blue', 'white')
+
+    // ------cara melihat pseudo element css
+    // var element = document.querySelector('#item')
+    // var styles = window.getComputedStyle(element, ':after')
+    // var content = styles.border
+    // console.log(content)
   },
   // beforeDestroy() { window.removeEventListener('resize', this.getPointer)},
   methods: {
@@ -59,25 +98,134 @@ export default {
       e.target.appendChild(card)
     },
     navNimate(val) {
-      const selector = document.querySelector('.rl-1:before')
-      console.log(selector)
+      switch (val) {
+        case 'home':
+          document.getElementsByClassName('r-1')[0].classList.add('rl')
+          document.getElementsByClassName('r-1')[0].classList.remove('rl-1')
+          document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+          break
+        case 'about':
+          document.getElementsByClassName('r-1')[0].classList.remove('rl')
+          document.getElementsByClassName('r-2')[0].classList.remove('rl-2')
+          document.getElementsByClassName('r-2')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '56px')
+          document.documentElement.style.setProperty('--width-after', '51px')
+          break
+        case 'skill':
+          document.getElementsByClassName('r-1')[0].classList.remove('rl')
+          document.getElementsByClassName('r-3')[0].classList.remove('rl-2')
+          document.getElementsByClassName('r-3')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '45px')
+          document.documentElement.style.setProperty('--width-after', '41px')
+          break
+        case 'porto':
+          document.getElementsByClassName('r-1')[0].classList.remove('rl')
+          document.getElementsByClassName('r-4')[0].classList.remove('rl-2')
+          document.getElementsByClassName('r-4')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '83px')
+          document.documentElement.style.setProperty('--width-after', '79px')
+          break
+        case 'contact':
+          document.getElementsByClassName('r-1')[0].classList.remove('rl')
+          document.getElementsByClassName('r-5')[0].classList.remove('rl-2')
+          document.getElementsByClassName('r-5')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '68px')
+          document.documentElement.style.setProperty('--width-after', '63.5px')
+          break
+      }
     },
     getScrollNum(event) {
       const roll = document.documentElement.scrollTop
       if (roll > 20) {
         document.getElementById('Navigate').classList.remove('Navigate')
         document.getElementById('Navigate').classList.add('navMotion')
-        document.getElementById('Navigate').classList.add('navExpand')
-        // document.getElementById('Navigate').classList.toggle('navMotion')
-        // document.getElementById('Navigate').style.position = 'fixed'
-        // document.getElementById('Navigate').style.mixBlendMode = 'normal'
       } else {
         document.getElementById('Navigate').classList.remove('navMotion')
-        document.getElementById('Navigate').classList.remove('navExpand')
         document.getElementById('Navigate').classList.add('Navigate')
-        // document.getElementById('Navigate').classList.toggle('Navigate')
-        // document.getElementById('Navigate').style.position = 'absolute'
-        // document.getElementById('Navigate').style.mixBlendMode = 'overlay'
+      }
+    },
+    navSelect(event) {
+      if (event.clientX > 545 && event.clientX < 605 && event.clientY < 65) {
+        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-1')[0].classList.add('rl-1')
+        document.documentElement.style.setProperty('--width-before', '55px')
+        document.documentElement.style.setProperty('--width-after', '50px')
+      } else if (
+        event.clientX > 635 &&
+        event.clientX < 691 &&
+        event.clientY < 65
+      ) {
+        document.getElementsByClassName('r-1')[0].classList.remove('rl')
+        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-2')[0].classList.add('rl-2')
+        document.documentElement.style.setProperty('--width-before', '56px')
+        document.documentElement.style.setProperty('--width-after', '51px')
+      } else if (
+        event.clientX > 727 &&
+        event.clientX < 781 &&
+        event.clientY < 65
+      ) {
+        document.getElementsByClassName('r-1')[0].classList.remove('rl')
+        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-3')[0].classList.add('rl-2')
+        document.documentElement.style.setProperty('--width-before', '45px')
+        document.documentElement.style.setProperty('--width-after', '41px')
+      } else if (
+        event.clientX > 804 &&
+        event.clientX < 880 &&
+        event.clientY < 65
+      ) {
+        document.getElementsByClassName('r-1')[0].classList.remove('rl')
+        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-4')[0].classList.add('rl-2')
+        document.documentElement.style.setProperty('--width-before', '83px')
+        document.documentElement.style.setProperty('--width-after', '79px')
+      } else if (
+        event.clientX > 923 &&
+        event.clientX < 983 &&
+        event.clientY < 65
+      ) {
+        document.getElementsByClassName('r-1')[0].classList.remove('rl')
+        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+        document.getElementsByClassName('r-5')[0].classList.add('rl-2')
+        document.documentElement.style.setProperty('--width-before', '68px')
+        document.documentElement.style.setProperty('--width-after', '63.5px')
+      } else {
+        document.getElementsByClassName('r-1')[0].classList.remove('rl-1')
+        document.getElementsByClassName('r-2')[0].classList.remove('rl-2')
+        document.getElementsByClassName('r-3')[0].classList.remove('rl-2')
+        document.getElementsByClassName('r-4')[0].classList.remove('rl-2')
+        document.getElementsByClassName('r-5')[0].classList.remove('rl-2')
+        if (this.$router.history.current.hash === '#about') {
+          document.getElementsByClassName('r-2')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '56px')
+          document.documentElement.style.setProperty('--width-after', '51px')
+        } else if (this.$router.history.current.hash === '#skill') {
+          document.getElementsByClassName('r-3')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '45px')
+          document.documentElement.style.setProperty('--width-after', '41px')
+        } else if (this.$router.history.current.hash === '#portofolio') {
+          document.getElementsByClassName('r-4')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '83px')
+          document.documentElement.style.setProperty('--width-after', '79px')
+        } else if (this.$router.history.current.hash === '#contact') {
+          document.getElementsByClassName('r-5')[0].classList.add('rl-3')
+          document.documentElement.style.setProperty('--width-before', '68px')
+          document.documentElement.style.setProperty('--width-after', '63.5px')
+        } else {
+          document.getElementsByClassName('r-1')[0].classList.add('rl')
+        }
       }
     }
   }
@@ -85,12 +233,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+:root {
+  --move-x-c1: 0;
+  --move-x-c2: 0;
+  --width-before: 0px;
+  --width-after: 0px;
+}
+
 .Navigate {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: absolute;
-  color: rgb(255, 255, 255);
   font-size: 16px;
   top: 0;
   right: 0;
@@ -104,7 +258,6 @@ export default {
   justify-content: flex-start;
   align-items: center;
   position: fixed;
-  color: rgb(255, 255, 255);
   font-size: 16px;
   top: 0;
   right: 0;
@@ -112,14 +265,27 @@ export default {
   height: 57px;
   z-index: 10;
   mix-blend-mode: normal;
+  animation: scrollMotion 1s ease 1 forwards;
 }
-// .navExpand {
-//   position: fixed;
-//   right: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 57px;
-// }
+.dummyNavExpand {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 545px;
+  height: 50px;
+  border: 1px solid rgba(11, 250, 230, 0.384);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-image: linear-gradient(
+    135deg,
+    rgb(2, 2, 2),
+    rgba(56, 224, 196, 0.308),
+    rgb(2, 2, 2)
+  );
+  z-index: 1;
+  mix-blend-mode: difference;
+}
 .navMotion:before {
   content: '';
   position: absolute;
@@ -128,8 +294,9 @@ export default {
   border: 1px solid rgb(5, 5, 5);
   width: 100%;
   height: 50px;
-  // background-color: rgba(0, 0, 0, 0.384);
+  background-color: rgba(0, 0, 0, 0.363);
   mix-blend-mode: difference;
+  animation: scrollMotion 1s ease 1 forwards;
 }
 .navMotion::after {
   content: '';
@@ -141,21 +308,33 @@ export default {
   left: 0;
   width: 750px;
   height: 50px;
-  // background-color: rgba(0, 0, 0, 0);
-  mix-blend-mode: difference;
+  background-image: linear-gradient(
+    135deg,
+    rgb(2, 2, 2),
+    rgba(31, 238, 203, 0.979),
+    rgb(2, 2, 2)
+  );
+  mix-blend-mode: overlay;
+  z-index: 1;
+  animation: scrollMotion 1s ease 1 forwards;
 }
 @keyframes scrollMotion {
   0% {
+    opacity: 0;
+    height: 20px;
   }
   100% {
+    opacity: 1;
+    height: 50px;
   }
 }
 .rl-1 {
   color: rgb(0, 255, 191);
   font-weight: bolder;
   position: relative;
+  z-index: 10;
 }
-.rl-1:after {
+.rl-1::after {
   content: '';
   position: absolute;
   top: 0;
@@ -170,6 +349,8 @@ export default {
     rgba(0, 0, 0, 0.966),
     rgba(0, 0, 0, 0.377)
   );
+  z-index: 10;
+  animation: showInAfter 0.5s ease 1 forwards;
 }
 .rl-1:before {
   content: '';
@@ -181,5 +362,205 @@ export default {
   background-color: rgb(0, 0, 0);
   border: 1px solid rgb(13, 255, 215);
   mix-blend-mode: difference;
+  z-index: 10;
+  transition: 1s ease-in;
+  animation: showInBefore 1s ease 1 forwards;
+}
+@keyframes showInAfter {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+@keyframes showInBefore {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 55px;
+    height: 55px;
+  }
+}
+// ---------------------------------
+.rl-2 {
+  color: rgb(0, 255, 191);
+  font-weight: bolder;
+  position: relative;
+  z-index: 10;
+}
+.rl-2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: var(--width-after);
+  height: 50px;
+  background-color: rgba(250, 250, 250, 0.897);
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: overlay;
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.966),
+    rgba(0, 0, 0, 0.377)
+  );
+  z-index: 10;
+  animation: rl2InAfter 0.5s ease 1 forwards;
+}
+.rl-2:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  width: var(--width-before);
+  height: 55px;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: difference;
+  z-index: 10;
+  transition: 1s ease-in;
+  animation: rl2InBefore 1s ease 1 forwards;
+}
+@keyframes rl2InAfter {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: var(--width-after);
+    height: 50px;
+  }
+}
+@keyframes rl2InBefore {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: var(--width-before);
+    height: 55px;
+  }
+}
+// ------------------------------
+.rl {
+  color: rgb(0, 255, 191);
+  font-weight: bolder;
+  position: relative;
+  z-index: 10;
+}
+.rl::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(250, 250, 250, 0.897);
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: overlay;
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.966),
+    rgba(0, 0, 0, 0.377)
+  );
+  z-index: 10;
+  animation: showAfter 0.5s ease 1 forwards;
+}
+.rl:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  width: 55px;
+  height: 55px;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: difference;
+  z-index: 10;
+  transition: 1s ease-in;
+  animation: showBefore 1s ease 1 forwards;
+}
+@keyframes showAfter {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+@keyframes showBefore {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 55px;
+    height: 55px;
+  }
+}
+// ---------------------------------
+.rl-3 {
+  color: rgb(0, 255, 191);
+  font-weight: bolder;
+  position: relative;
+  z-index: 10;
+}
+.rl-3::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: var(--width-after);
+  height: 50px;
+  background-color: rgba(250, 250, 250, 0.897);
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: overlay;
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.966),
+    rgba(0, 0, 0, 0.377)
+  );
+  z-index: 10;
+  animation: rl3InAfter 0.5s ease 1 forwards;
+}
+.rl-3:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  width: var(--width-before);
+  height: 55px;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: difference;
+  z-index: 10;
+  transition: 1s ease-in;
+  animation: rl3InBefore 1s ease 1 forwards;
+}
+@keyframes rl3InAfter {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: var(--width-after);
+    height: 50px;
+  }
+}
+@keyframes rl3InBefore {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: var(--width-before);
+    height: 55px;
+  }
 }
 </style>
