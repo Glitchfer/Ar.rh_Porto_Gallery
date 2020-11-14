@@ -1,33 +1,54 @@
 <template>
   <b-container fluid class="landing">
-    <!-- <nav> -->
-    <Navigate />
-    <!-- </nav> -->
-    <h3>
-      My <br />
-      GALLERY
-    </h3>
-    <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="hero">
-      <img src="../assets/img/arrr.jpg" alt="" />
-      <img src="../assets/img/ar.png" alt="" />
-      <h1>
-        Hi_ my name <br />
-        Arif Rahman
-      </h1>
+    <b-col
+      class="sectionOne"
+      cols="12"
+      sm="12"
+      md="12"
+      lg="12"
+      xl="12"
+      id="landing"
+    >
+      <!-- <nav> -->
+      <Navigate @scrolled="scrollPoint" />
+      <!-- </nav> -->
+      <h3 class="welcomeh3" v-if="scrolled < 20">
+        My <br />
+        GALLERY
+      </h3>
+      <h3 class="welcome" v-else>
+        Arrh <br />
+        GALLERY
+      </h3>
+      <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="hero">
+        <img src="../assets/img/arrr.jpg" alt="" />
+        <img src="../assets/img/ar.png" alt="" />
+        <h1>
+          Hi_ my name <br />
+          Arif Rahman
+        </h1>
+      </b-col>
     </b-col>
-    <!-- <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="aboutMe"> -->
-    <div class="satu">
-      <a href="#">About me</a>
-    </div>
-    <div class="dua">
-      <a href="#">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, ad, rem
-        eos perferendis id dignissimos corrupti autem facere voluptate dicta a
-        repudiandae totam voluptates natus fugit quis corporis minus!
-        Temporibus.
-      </a>
-    </div>
-    <!-- </b-col> -->
+    <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="aboutMe" id="about">
+      <div class="profile-img"></div>
+      <div class="satu">
+        <h3 style="fontWeight: bold;">About Me</h3>
+        <p>Website Developer</p>
+      </div>
+      <div class="dua">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
+          labore sit quo ipsum, totam asperiores dicta beatae, doloribus
+          voluptatem eveniet explicabo perspiciatis, minima tempora perferendis
+          unde corporis. Porro consequuntur maxime enim velit vero ad rem
+          soluta, corporis iusto laboriosam minima praesentium asperiores quis
+          atque obcaecati aut vel labore neque et! Beatae vel nesciunt
+          architecto accusantium laudantium vero nihil soluta. Quam amet unde
+          sint? Ipsum rerum labore modi doloremque, dolorum ab delectus unde,
+          eveniet amet alias, rem fuga et asperiores repellat?.
+        </p>
+      </div>
+    </b-col>
   </b-container>
 </template>
 <script>
@@ -35,31 +56,80 @@ import Navigate from '../components/Navigation'
 export default {
   name: 'Home',
   data() {
-    return {}
+    return {
+      scrolled: 0
+    }
   },
   components: {
     Navigate
   },
   mounted() {},
-  methods: {}
+  methods: {
+    scrollPoint(data) {
+      this.scrolled = data
+      if (data > 319) {
+        document
+          .getElementById('about')
+          .style.setProperty('--play-state', 'running')
+
+        document
+          .getElementById('about')
+          .style.setProperty(
+            '--translate-one',
+            ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
+          )
+
+        document
+          .getElementById('about')
+          .style.setProperty(
+            '--translate-two',
+            ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
+          )
+      } else if (data < 310) {
+        document
+          .getElementById('about')
+          .style.setProperty(
+            '--translate-one',
+            ' translateX(' + -10 + 'px) translateY(' + 10 + 'px)'
+          )
+
+        document
+          .getElementById('about')
+          .style.setProperty(
+            '--translate-two',
+            ' translateX(' + 20 + 'px) translateY(' + -20 + 'px)'
+          )
+      }
+
+      // --translate-one: translateX(-10px) translateY(10px);
+      // --translate-two: translateX(20px) translateY(-20px);
+    }
+  }
 }
 </script>
 
 <style scoped>
+/* :root {
+  --play-state: paused;
+} */
 .landing {
+  padding: 0;
+  background-color: white;
+}
+.sectionOne {
   position: relative;
   padding: 0;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
+  height: 100vh;
+  /* overflow: hidden; */
 }
-.landing::before {
+.sectionOne::before {
   content: '';
   width: 100%;
-  height: 31.5rem;
+  height: 100vh;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -69,10 +139,69 @@ export default {
   mix-blend-mode: overlay;
   z-index: 2;
 }
-.landing h3 {
-  text-align: left;
+.sectionOne .welcomeh3 {
+  text-align: right;
   position: absolute;
-  top: 20px;
+  top: 10px;
+  left: 30px;
+  padding: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: rgb(5, 253, 220);
+  font-size: 28px;
+  font-weight: bold;
+  height: 70px;
+  mix-blend-mode: difference;
+  z-index: 10;
+  animation: welcomeTitle 2s ease-out 1 forwards;
+}
+@keyframes welcomeTitle {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.sectionOne .welcomeh3:before {
+  padding: 19px 90px 0 0;
+  content: 'welcome to';
+  width: 240px;
+  height: 70px;
+  position: absolute;
+  top: 0px;
+  left: -63px;
+  font-size: 14px;
+  color: rgba(0, 250, 196, 0.411);
+  margin: 0;
+  background-image: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.966),
+    rgba(0, 0, 0, 0.377)
+  );
+
+  mix-blend-mode: multiply;
+  /* transform: rotate(-270deg); */
+}
+.sectionOne .welcomeh3:after {
+  content: '';
+  width: 12rem;
+  height: 95px;
+  position: absolute;
+  top: 35px;
+  left: -30px;
+  border: 1px solid rgb(13, 255, 215);
+  mix-blend-mode: multiply;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+}
+.sectionOne .welcome {
+  text-align: left;
+  position: fixed;
+  top: -8px;
   right: 30px;
   padding: 10px;
   z-index: 2;
@@ -80,41 +209,48 @@ export default {
   align-items: center;
   margin: 0;
   color: rgb(5, 253, 220);
-  font-size: 32px;
+  font-size: 18px;
   font-weight: bold;
   height: 70px;
   mix-blend-mode: difference;
+  z-index: 10;
+  animation: name 3s ease 1 forwards;
 }
-.landing h3:before {
-  padding: 10px 0 0 20px;
-  content: 'welcome to';
-  width: 235px;
-  height: 275px;
+@keyframes name {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.sectionOne .welcome:before {
+  padding: 19px 90px 0 0;
+  content: '';
+  width: 240px;
+  height: 70px;
   position: absolute;
-  top: -92px;
+  top: 0px;
   left: -63px;
-  font-size: 16px;
-  color: rgba(13, 255, 215, 0.473);
+  font-size: 14px;
+  color: rgba(0, 250, 196, 0.411);
   margin: 0;
-  border: 1px solid rgba(13, 255, 215, 0.808);
   background-image: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.966),
     rgba(0, 0, 0, 0.377)
   );
 
-  box-shadow: inset 1px 1px 5px rgba(13, 255, 215, 0.74),
-    inset -1px -1px 3px rgba(13, 255, 215, 0.863);
   mix-blend-mode: multiply;
-  transform: rotate(-65deg);
+  /* transform: rotate(-270deg); */
 }
-.landing h3:after {
+.sectionOne .welcome:after {
   content: '';
-  width: 45rem;
+  width: 12rem;
   height: 95px;
   position: absolute;
   top: 35px;
-  right: -10px;
+  left: 5px;
   border: 1px solid rgb(13, 255, 215);
   mix-blend-mode: multiply;
   border-right: none;
@@ -125,11 +261,28 @@ export default {
   position: relative;
   top: 0;
   width: 100%;
-  height: 35rem;
+  height: 100vh;
   margin: 0;
   padding: 0;
   text-align: left;
   overflow: hidden;
+}
+
+.hero::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.178);
+  z-index: 1;
+  background-image: linear-gradient(
+    135deg,
+    rgba(2, 2, 2, 0.966),
+    rgba(31, 238, 203, 0.377),
+    rgba(2, 2, 2, 0.966)
+  );
 }
 .hero h1 {
   position: absolute;
@@ -137,7 +290,7 @@ export default {
   font-weight: bolder;
   line-height: 80px;
   font-size: 62px;
-  top: 45%;
+  top: 35%;
   right: 18%;
   z-index: 1;
   border: 1px solid rgb(13, 255, 215);
@@ -178,28 +331,107 @@ export default {
   filter: blur(9px);
   transform: scale(2);
 }
-.hero::before {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* -------------------------- */
+#about {
+  --play-state: paused;
+  --translate-one: translateX(-10px) translateY(10px);
+  --translate-two: translateX(20px) translateY(-20px);
+  margin: 0 auto;
+  position: relative;
+  top: -85px;
+  z-index: 13;
+  border-radius: 25px;
+  padding: 25px 40px 25px 40px;
+  /* border: 3px solid rgb(250, 19, 19); */
+  height: 20rem;
+  width: 85%;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px #0e9986dc, 1px 1px 5px #0e9986dc,
+    1px 1px 3px #0e9986dc;
+  display: grid;
+  grid-template-areas:
+    'image title'
+    'image desc';
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 2.5fr;
+}
+.profile-img {
+  margin: 0 auto;
+  grid-area: image;
+  position: relative;
+  background-image: url(../assets/img/S_7272243340393.jpg);
+  background-size: cover;
+  background-position-x: -26px;
+  width: 200px;
+  height: 230px;
+  background-color: white;
+  box-shadow: inset 0px 0px 40px #00000050;
+  filter: grayscale(1) contrast(130%);
+  transform: var(--translate-one);
+  animation-name: var(--name-one);
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: var(--play-state);
+  transition: 1s;
+}
+@keyframes image-after {
+  0% {
+    transform: translateX(-10px) translateY(10px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+.profile-img:before {
   content: '';
+  position: absolute;
+  top: 20px;
+  left: -20px;
   width: 100%;
-  height: 35rem;
-  background-color: rgba(0, 0, 0, 0.178);
-  z-index: 1;
-  background-image: linear-gradient(
-    135deg,
-    rgba(2, 2, 2, 0.966),
-    rgba(31, 238, 203, 0.377),
-    rgba(2, 2, 2, 0.966)
-  );
+  height: 100%;
+  mix-blend-mode: difference;
+  background-color: rgb(0, 0, 0);
+  border: 7px solid rgb(0, 0, 0);
+  transform: var(--translate-two);
+  animation-name: var(--name-two);
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: var(--play-state);
+  transition: 1s;
+}
+@keyframes image-before {
+  0% {
+    transform: translateX(20px) translateY(-20px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
 }
 .satu {
-  margin-top: 100px;
-  cursor: pointer;
+  grid-area: title;
+  position: relative;
+  top: -10px;
+  left: -30px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 30px 0 30px;
+  line-height: 10px;
+  text-align: left;
 }
-.satu:hover ~ .dua {
-  background-color: rgb(31, 238, 203);
+.dua {
+  top: -10px;
+  left: -30px;
+  box-sizing: border-box;
+  grid-area: desc;
+  position: relative;
+  padding: 0 20px 0 30px;
   color: black;
+  text-align: left;
+  text-align: justify;
+  height: 200px;
 }
 </style>

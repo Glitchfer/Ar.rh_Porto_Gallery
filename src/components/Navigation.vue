@@ -1,38 +1,37 @@
 <template>
   <div id="Navigate" class="Navigate">
-    <div class="dummyNavExpand"></div>
     <a
       href="#landing"
       class="r-1"
-      style="marginLeft: 20px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
+      style="marginLeft: 20px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('home')"
       >Home</a
     >
     <a
       href="#about"
       class="r-2"
-      style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
+      style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('about')"
       >About
     </a>
     <a
       href="#skill"
       class="r-3"
-      style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
+      style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('skill')"
-      >Skill</a
+      >Skills</a
     >
     <a
       href="#portofolio"
       class="r-4"
-      style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
+      style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('porto')"
       >Portofolio</a
     >
     <a
       href="#contact"
       class="r-5"
-      style="marginLeft: 45px; color:   rgb(255, 255, 255); fontWeight: bold; textDecoration: none; "
+      style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('contact')"
       >Contact</a
     >
@@ -136,6 +135,7 @@ export default {
     },
     getScrollNum(event) {
       const roll = document.documentElement.scrollTop
+      this.$emit('scrolled', roll)
       if (roll > 20) {
         document.getElementById('Navigate').classList.remove('Navigate')
         document.getElementById('Navigate').classList.add('navMotion')
@@ -251,7 +251,10 @@ export default {
   width: 750px;
   height: 70px; /*70 default */
   z-index: 10;
-  mix-blend-mode: overlay;
+  mix-blend-mode: difference;
+}
+.Navigate a {
+  color: rgb(0, 255, 200);
 }
 .navMotion {
   display: flex;
@@ -267,28 +270,13 @@ export default {
   mix-blend-mode: normal;
   animation: scrollMotion 1s ease 1 forwards;
 }
-.dummyNavExpand {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 545px;
-  height: 50px;
-  border: 1px solid rgba(11, 250, 230, 0.384);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  background-image: linear-gradient(
-    135deg,
-    rgb(2, 2, 2),
-    rgba(56, 224, 196, 0.308),
-    rgb(2, 2, 2)
-  );
-  z-index: 1;
-  mix-blend-mode: difference;
+.navMotion a {
+  color: rgb(0, 255, 200);
 }
 .navMotion:before {
   content: '';
   position: absolute;
+  border-radius: 0 0 0 50px;
   top: 0;
   left: 0;
   border: 1px solid rgb(5, 5, 5);
@@ -304,6 +292,7 @@ export default {
   border-left: none;
   border-right: none;
   position: absolute;
+  border-radius: 0 0 0 50px;
   top: 0;
   left: 0;
   width: 750px;
@@ -326,6 +315,14 @@ export default {
   100% {
     opacity: 1;
     height: 50px;
+  }
+}
+@keyframes navMotions {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 .rl-1 {

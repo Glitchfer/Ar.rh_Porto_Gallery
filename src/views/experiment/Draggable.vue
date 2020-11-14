@@ -330,6 +330,7 @@ export default {
   right: 0;
   width: 0;
   animation: slide 0.5s ease-out 1 forwards;
+  scroll-behavior: smooth;
 }
 @keyframes slide {
   0% {
