@@ -1,5 +1,11 @@
 <template>
   <b-container fluid class="landing">
+    <Navigate @scrolled="scrollPoint" />
+
+    <h3 class="welcome" v-if="scrolled > 20">
+      Arrh <br />
+      GALLERY
+    </h3>
     <b-col
       class="sectionOne"
       cols="12"
@@ -10,14 +16,9 @@
       id="landing"
     >
       <!-- <nav> -->
-      <Navigate @scrolled="scrollPoint" />
       <!-- </nav> -->
       <h3 class="welcomeh3" v-if="scrolled < 20">
         My <br />
-        GALLERY
-      </h3>
-      <h3 class="welcome" v-else>
-        Arrh <br />
         GALLERY
       </h3>
       <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="hero">
@@ -49,10 +50,12 @@
         </p>
       </div>
     </b-col>
+    <Skills />
   </b-container>
 </template>
 <script>
 import Navigate from '../components/Navigation'
+import Skills from '../components/Skills'
 export default {
   name: 'Home',
   data() {
@@ -61,31 +64,50 @@ export default {
     }
   },
   components: {
-    Navigate
+    Navigate,
+    Skills
   },
   mounted() {},
   methods: {
     scrollPoint(data) {
       this.scrolled = data
-      if (data > 319) {
+      console.log(data)
+      if (data > 210 && data < 558) {
+        document
+          .getElementById('landing')
+          .style.setProperty('transform', ' translateX(' + 0 + '%)')
         document
           .getElementById('about')
-          .style.setProperty('--play-state', 'running')
+          .style.setProperty('transform', ' translateX(' + 0 + 'px)')
+        // document
+        //   .getElementById('about')
+        //   .style.setProperty('--play-state', 'running')
+        setTimeout(() => {
+          document
+            .getElementById('about')
+            .style.setProperty(
+              '--translate-one',
+              ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
+            )
 
+          document
+            .getElementById('about')
+            .style.setProperty(
+              '--translate-two',
+              ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
+            )
+          document
+            .getElementsByClassName('satu')[0]
+            .style.setProperty('opacity', 1)
+          document
+            .getElementsByClassName('dua')[0]
+            .style.setProperty('opacity', 1)
+        }, 1000)
+      } else if (data < 210) {
         document
           .getElementById('about')
-          .style.setProperty(
-            '--translate-one',
-            ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
-          )
+          .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
 
-        document
-          .getElementById('about')
-          .style.setProperty(
-            '--translate-two',
-            ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
-          )
-      } else if (data < 310) {
         document
           .getElementById('about')
           .style.setProperty(
@@ -99,10 +121,20 @@ export default {
             '--translate-two',
             ' translateX(' + 20 + 'px) translateY(' + -20 + 'px)'
           )
+        document
+          .getElementsByClassName('satu')[0]
+          .style.setProperty('opacity', 0)
+        document
+          .getElementsByClassName('dua')[0]
+          .style.setProperty('opacity', 0)
+      } else if (data > 558 && data < 789) {
+        document
+          .getElementById('about')
+          .style.setProperty('transform', ' translateX(' + 850 + 'px)')
+        document
+          .getElementById('landing')
+          .style.setProperty('transform', ' translateX(' + -100 + '%)')
       }
-
-      // --translate-one: translateX(-10px) translateY(10px);
-      // --translate-two: translateX(20px) translateY(-20px);
     }
   }
 }
@@ -113,11 +145,17 @@ export default {
   --play-state: paused;
 } */
 .landing {
+  /* height: 200vh; */
   padding: 0;
   background-color: white;
 }
+#landing {
+  border: none;
+  transition: 1s ease-in-out;
+}
 .sectionOne {
-  position: relative;
+  position: sticky;
+  top: -310px;
   padding: 0;
   display: flex;
   align-items: flex-end;
@@ -125,6 +163,7 @@ export default {
   width: 100%;
   height: 100vh;
   /* overflow: hidden; */
+  z-index: 2;
 }
 .sectionOne::before {
   content: '';
@@ -198,7 +237,7 @@ export default {
   border-left: none;
   border-bottom: none;
 }
-.sectionOne .welcome {
+.welcome {
   text-align: left;
   position: fixed;
   top: -8px;
@@ -213,7 +252,7 @@ export default {
   font-weight: bold;
   height: 70px;
   mix-blend-mode: difference;
-  z-index: 10;
+  z-index: 50;
   animation: name 3s ease 1 forwards;
 }
 @keyframes name {
@@ -224,7 +263,7 @@ export default {
     opacity: 1;
   }
 }
-.sectionOne .welcome:before {
+.welcome:before {
   padding: 19px 90px 0 0;
   content: '';
   width: 240px;
@@ -244,7 +283,7 @@ export default {
   mix-blend-mode: multiply;
   /* transform: rotate(-270deg); */
 }
-.sectionOne .welcome:after {
+.welcome:after {
   content: '';
   width: 12rem;
   height: 95px;
@@ -336,13 +375,12 @@ export default {
   --play-state: paused;
   --translate-one: translateX(-10px) translateY(10px);
   --translate-two: translateX(20px) translateY(-20px);
-  margin: 0 auto;
-  position: relative;
-  top: -85px;
+  margin: -90px auto;
+  position: sticky;
+  top: 210px;
   z-index: 13;
   border-radius: 25px;
   padding: 25px 40px 25px 40px;
-  /* border: 3px solid rgb(250, 19, 19); */
   height: 20rem;
   width: 85%;
   background-color: #ffffff;
@@ -354,6 +392,7 @@ export default {
     'image desc';
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 2.5fr;
+  transition: 1s ease-in-out;
 }
 .profile-img {
   margin: 0 auto;
@@ -368,12 +407,12 @@ export default {
   box-shadow: inset 0px 0px 40px #00000050;
   filter: grayscale(1) contrast(130%);
   transform: var(--translate-one);
-  animation-name: var(--name-one);
+  /* animation-name: var(--name-one);
   animation-duration: 1s;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-play-state: var(--play-state);
+  animation-play-state: var(--play-state); */
   transition: 1s;
 }
 @keyframes image-after {
@@ -395,12 +434,12 @@ export default {
   background-color: rgb(0, 0, 0);
   border: 7px solid rgb(0, 0, 0);
   transform: var(--translate-two);
-  animation-name: var(--name-two);
+  /* animation-name: var(--name-two);
   animation-duration: 1s;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-play-state: var(--play-state);
+  animation-play-state: var(--play-state); */
   transition: 1s;
 }
 @keyframes image-before {
@@ -421,6 +460,8 @@ export default {
   padding: 0 30px 0 30px;
   line-height: 10px;
   text-align: left;
+  opacity: 0;
+  transition: 0.3s;
 }
 .dua {
   top: -10px;
@@ -433,5 +474,6 @@ export default {
   text-align: left;
   text-align: justify;
   height: 200px;
+  transition: 1s;
 }
 </style>

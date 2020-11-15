@@ -15,7 +15,7 @@
       >About
     </a>
     <a
-      href="#skill"
+      href="#Skills"
       class="r-3"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('skill')"
