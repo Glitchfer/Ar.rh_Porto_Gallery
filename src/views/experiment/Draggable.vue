@@ -128,6 +128,7 @@
             <b-button class="ml-2" variant="primary" @click="add">Add</b-button>
           </div>
         </div>
+
         <div class="row mt-3">
           <div class="col-md-3">
             <div class="p-2 alert alert-secondary">

@@ -54,12 +54,20 @@ export default {
       document.getElementsByTagName('body')[0].onmousemove = this.navSelect
     })
 
+    if (
+      this.$router.history.current.hash !== '#landing' ||
+      this.$router.history.current.hash !== ''
+    ) {
+      document.getElementById('Navigate').classList.remove('Navigate')
+      document.getElementById('Navigate').classList.add('navMotion')
+    }
+
     if (this.$router.history.current.hash === '#about') {
       document.getElementsByClassName('r-1')[0].classList.remove('rl')
       document.getElementsByClassName('r-2')[0].classList.add('rl-3')
       document.documentElement.style.setProperty('--width-before', '56px')
       document.documentElement.style.setProperty('--width-after', '51px')
-    } else if (this.$router.history.current.hash === '#skill') {
+    } else if (this.$router.history.current.hash === '#Skills') {
       document.getElementsByClassName('r-1')[0].classList.remove('rl')
       document.getElementsByClassName('r-3')[0].classList.add('rl-3')
       document.documentElement.style.setProperty('--width-before', '45px')
@@ -211,7 +219,7 @@ export default {
           document.getElementsByClassName('r-2')[0].classList.add('rl-3')
           document.documentElement.style.setProperty('--width-before', '56px')
           document.documentElement.style.setProperty('--width-after', '51px')
-        } else if (this.$router.history.current.hash === '#skill') {
+        } else if (this.$router.history.current.hash === '#Skills') {
           document.getElementsByClassName('r-3')[0].classList.add('rl-3')
           document.documentElement.style.setProperty('--width-before', '45px')
           document.documentElement.style.setProperty('--width-after', '41px')

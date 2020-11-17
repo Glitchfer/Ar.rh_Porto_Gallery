@@ -67,7 +67,16 @@ export default {
     Navigate,
     Skills
   },
-  mounted() {},
+  mounted() {
+    if (
+      this.$router.history.current.hash === '#landing' ||
+      this.$router.history.current.hash === ''
+    ) {
+      document
+        .getElementById('about')
+        .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
+    }
+  },
   methods: {
     scrollPoint(data) {
       this.scrolled = data
@@ -130,7 +139,7 @@ export default {
       } else if (data > 558 && data < 789) {
         document
           .getElementById('about')
-          .style.setProperty('transform', ' translateX(' + 850 + 'px)')
+          .style.setProperty('transform', ' translateX(' + 1200 + 'px)')
         document
           .getElementById('landing')
           .style.setProperty('transform', ' translateX(' + -100 + '%)')
@@ -148,6 +157,12 @@ export default {
   /* height: 200vh; */
   padding: 0;
   background-color: white;
+  /* background-color: rgb(0, 255, 200);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.726),
+    rgba(0, 219, 219, 0.534)
+  ); */
 }
 #landing {
   border: none;
