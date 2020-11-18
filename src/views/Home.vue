@@ -80,7 +80,6 @@ export default {
   methods: {
     scrollPoint(data) {
       this.scrolled = data
-      console.log(data)
       if (data > 210 && data < 558) {
         document
           .getElementById('landing')
@@ -156,13 +155,13 @@ export default {
 .landing {
   /* height: 200vh; */
   padding: 0;
-  background-color: white;
-  /* background-color: rgb(0, 255, 200);
+  /* background-color: rgb(0, 0, 0); */
+  /* background-color: rgba(18, 155, 125, 0.322); */
   background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.726),
-    rgba(0, 219, 219, 0.534)
-  ); */
+    -125deg,
+    rgba(4, 172, 144, 0.63),
+    rgba(255, 255, 255, 0.651)
+  );
 }
 #landing {
   border: none;
