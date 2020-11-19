@@ -1,6 +1,9 @@
 <template>
   <div id="Skills" class="skills" @mousemove="skillCoordinate">
     <h1>TECHNICAL <br />SKILLS</h1>
+    <h5 style="position:absolute; top:0; left:0; display:none;">
+      {{ getScrollDistance }}
+    </h5>
     <span class="q"></span>
     <div class="layer1"></div>
     <kinesis-container class="icon" :duration="Number(15000)">
@@ -10,19 +13,23 @@
         v-for="(item, index) in basic"
         :key="index"
       >
-        <img :src="require(`../assets/img/${item.path}`)" :alt="item.path" />
-        <p>{{ item.name }}</p>
-      </kinesis-element>
+        <div class="kin">
+          <img :src="require(`../assets/img/${item.path}`)" :alt="item.path" />
+          <p>{{ item.name }}</p>
+        </div></kinesis-element
+      >
     </kinesis-container>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Skills',
   components: {},
   data() {
     return {
+      scrollDistance: 0,
       x: 0,
       y: 0,
       basic: [
@@ -86,55 +93,102 @@ export default {
         }
       ],
       divs: document.getElementsByClassName('elm'),
+      kin: document.getElementsByClassName('kin'),
       divWidth: 0,
-      divHeight: 0
+      divHeight: 0,
+      randomPalcement: false
     }
   },
   mounted() {
-    // console.log(this.distance(100, 150, 110, 150))
     this.divWidth = document.querySelector('.icon').offsetWidth - 120
     this.divHeight = document.querySelector('.icon').offsetHeight - 150
 
-    var objects = []
-    var protect = 0
-    // for (var i = 0; i < 11; i++) {
-    while (objects.length < 11) {
-      const randomX = Math.floor(Math.random() * (this.divWidth - 0) + 0)
-      const randomY = Math.floor(Math.random() * (this.divHeight - 0) + 0)
-      const radius = 100
-      var object = {
-        x: randomX,
-        y: randomY,
-        radius: radius
-      }
+    if (this.randomPalcement === true) {
+      var objects = []
+      var protect = 0
+      // for (var i = 0; i < 11; i++) {
+      while (objects.length < 11) {
+        const randomX = Math.floor(Math.random() * (this.divWidth - 0) + 0)
+        const randomY = Math.floor(Math.random() * (this.divHeight - 0) + 0)
+        const radius = 100
+        var object = {
+          x: randomX,
+          y: randomY,
+          radius: radius
+        }
 
-      var overlapping = false
-      for (var j = 0; j < objects.length; j++) {
-        var other = objects[j]
-        var dist = this.distance(object.x, object.y, other.x, other.y)
-        if (dist - radius * 2 < 0) {
-          overlapping = true
+        var overlapping = false
+        for (var j = 0; j < objects.length; j++) {
+          var other = objects[j]
+          var dist = this.distance(object.x, object.y, other.x, other.y)
+          if (dist - radius * 2 < 0) {
+            overlapping = true
+          }
+        }
+
+        if (!overlapping) {
+          objects.push(object)
+        }
+
+        protect++
+        if (protect > 200000) {
+          break
         }
       }
 
-      if (!overlapping) {
-        objects.push(object)
+      for (var l = 0; l < objects.length; l++) {
+        this.divs[l].style.left = objects[l].x + 'px'
+        this.divs[l].style.top = objects[l].y + 'px'
       }
-
-      protect++
-      console.log(protect)
-      if (protect > 200000) {
-        break
-      }
+    } else {
+      this.setPosition()
     }
-
-    for (var l = 0; l < objects.length; l++) {
-      this.divs[l].style.left = objects[l].x + 'px'
-      this.divs[l].style.top = objects[l].y + 'px'
-    }
-    console.log(objects)
+  },
+  updated() {
+    this.setPosition()
+  },
+  computed: {
+    ...mapGetters(['getScrollDistance'])
   },
   methods: {
+    setPosition() {
+      if (this.randomPalcement === false) {
+        let distance = 3
+        for (let i = 0; i < this.divs.length; i++) {
+          if (i % 2 === 0) {
+            this.divs[i].style.top = 60 + '%'
+          } else {
+            this.divs[i].style.top = 15 + '%'
+          }
+          this.divs[i].style.left = distance + '%'
+          distance += 8
+        }
+
+        for (let i = 0; i < this.divs.length; i++) {
+          if (this.getScrollDistance < 788) {
+            this.kin[i].classList.remove('bounce-out')
+            this.kin[i].classList.add('fade-in')
+          } else if (this.getScrollDistance > 787) {
+            this.kin[i].classList.remove('fade-in')
+            this.kin[i].classList.add('bounce-out')
+            // document.getElementsByClassName('.bounce-out')[i].style.animation =
+            //   'unset'
+          }
+        }
+      } else {
+        for (let i = 0; i < this.divs.length; i++) {
+          if (this.getScrollDistance < 788) {
+            this.kin[i].classList.remove('bounce-out')
+            this.kin[i].classList.add('fade-in')
+          } else if (this.getScrollDistance > 787) {
+            this.kin[i].classList.remove('fade-in')
+            this.kin[i].classList.add('bounce-out')
+            // document.getElementsByClassName('.bounce-out')[i].style.animation =
+            //   'unset'
+          }
+        }
+      }
+    },
     skillCoordinate: function(event) {
       this.x = event.clientX
       this.y = event.clientY
@@ -286,20 +340,33 @@ export default {
     inset -2px -2px 20px #00998c3d, inset -2px -2px 20px #02c5a552;
 }
 .icon .elm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   position: absolute;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.274);
+  background-color: rgba(255, 255, 255, 0.1);
   top: 0;
   left: 0;
   width: 120px;
   height: 145px;
   box-sizing: border-box;
-  box-shadow: inset -3px 0px 5px rgba(121, 197, 181, 0.562),
-    inset -3px 0px 6px #00998c3d, inset -3px 0px 6px #02c5a552;
+}
+.icon .elm::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 15px;
+}
+.icon .elm p {
+  position: relative;
+  top: 10px;
+  width: 90px;
+  border-radius: 5px;
+  box-shadow: inset 0 0px 3px rgba(1, 121, 101, 0.5),
+    inset 0 0px 5px rgba(1, 121, 101, 0.5);
+  filter: drop-shadow(4px 4px 2px rgba(1, 121, 101, 0.548));
+  transform: scale(0.8);
 }
 .icon .elm img {
   filter: drop-shadow(4px 4px 2px rgba(1, 121, 101, 0.548));
@@ -311,7 +378,13 @@ export default {
   animation: ctn ease-in-out 3s alternate infinite;
   animation-delay: 3s;
 }
-@keyframes bounce {
+.bounce-out {
+  animation: bounceOut ease-in 3s 1 forwards;
+}
+.fade-in {
+  animation: scaleOut ease-in 3s 1 forwards;
+}
+@keyframes bounceOut {
   0% {
     transform: scale(0);
   }
@@ -321,14 +394,22 @@ export default {
   80% {
     transform: scale(1.5);
   }
-  85% {
+  90% {
     transform: scale(1);
   }
-  90% {
+  95% {
     transform: scale(1.2);
   }
   100% {
     transform: scale(1);
+  }
+}
+@keyframes scaleOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
   }
 }
 @keyframes ctn {
@@ -340,5 +421,40 @@ export default {
     filter: drop-shadow(10px 10px 2px rgba(1, 121, 101, 0.548));
     transform: scale(1);
   }
+}
+
+.icon .kin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 145px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2),
+    inset -3px 0px 5px rgba(121, 197, 181, 0.562), inset -3px 0px 6px #00998c3d,
+    inset -3px 0px 6px #02c5a552;
+}
+.icon .kin::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 15px;
+  background: linear-gradient(
+    -65deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 5%,
+    transparent 50%,
+    transparent 65%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
 }
 </style>

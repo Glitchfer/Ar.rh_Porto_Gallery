@@ -1,35 +1,30 @@
 <template>
   <div id="Navigate" class="Navigate">
     <a
-      href="#landing"
       class="r-1"
       style="marginLeft: 20px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('home')"
       >Home</a
     >
     <a
-      href="#about"
       class="r-2"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('about')"
       >About
     </a>
     <a
-      href="#Skills"
       class="r-3"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('skill')"
       >Skills</a
     >
     <a
-      href="#portofolio"
       class="r-4"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('porto')"
       >Portofolio</a
     >
     <a
-      href="#contact"
       class="r-5"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('contact')"
@@ -39,6 +34,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   name: 'Navigation',
   date() {
@@ -54,13 +50,13 @@ export default {
       document.getElementsByTagName('body')[0].onmousemove = this.navSelect
     })
 
-    if (
-      this.$router.history.current.hash !== '#landing' ||
-      this.$router.history.current.hash !== ''
-    ) {
-      document.getElementById('Navigate').classList.remove('Navigate')
-      document.getElementById('Navigate').classList.add('navMotion')
-    }
+    // if (
+    //   this.$router.history.current.hash !== '#landing' ||
+    //   this.$router.history.current.hash !== ''
+    // ) {
+    //   document.getElementById('Navigate').classList.remove('Navigate')
+    //   document.getElementById('Navigate').classList.add('navMotion')
+    // }
 
     if (this.$router.history.current.hash === '#about') {
       document.getElementsByClassName('r-1')[0].classList.remove('rl')
@@ -98,6 +94,7 @@ export default {
   },
   // beforeDestroy() { window.removeEventListener('resize', this.getPointer)},
   methods: {
+    ...mapMutations(['scrollBar']),
     drop: e => {
       const cardId = e.dataTransfer.getData('cardId')
       const card = document.getElementById(cardId)
@@ -143,14 +140,15 @@ export default {
     },
     getScrollNum(event) {
       const roll = document.documentElement.scrollTop
+      this.scrollBar(roll)
       this.$emit('scrolled', roll)
-      if (roll > 20) {
-        document.getElementById('Navigate').classList.remove('Navigate')
-        document.getElementById('Navigate').classList.add('navMotion')
-      } else {
-        document.getElementById('Navigate').classList.remove('navMotion')
-        document.getElementById('Navigate').classList.add('Navigate')
-      }
+      // if (roll > 20) {
+      //   document.getElementById('Navigate').classList.remove('Navigate')
+      //   document.getElementById('Navigate').classList.add('navMotion')
+      // } else {
+      //   document.getElementById('Navigate').classList.remove('navMotion')
+      //   document.getElementById('Navigate').classList.add('Navigate')
+      // }
     },
     navSelect(event) {
       if (event.clientX > 545 && event.clientX < 605 && event.clientY < 65) {

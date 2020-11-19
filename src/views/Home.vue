@@ -68,14 +68,14 @@ export default {
     Skills
   },
   mounted() {
-    if (
-      this.$router.history.current.hash === '#landing' ||
-      this.$router.history.current.hash === ''
-    ) {
-      document
-        .getElementById('about')
-        .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
-    }
+    // if (
+    //   this.$router.history.current.hash === '#landing' ||
+    //   this.$router.history.current.hash === ''
+    // ) {
+    //   document
+    //     .getElementById('about')
+    //     .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
+    // }
   },
   methods: {
     scrollPoint(data) {
@@ -288,11 +288,7 @@ export default {
   font-size: 14px;
   color: rgba(0, 250, 196, 0.411);
   margin: 0;
-  background-image: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.966),
-    rgba(0, 0, 0, 0.377)
-  );
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 
   mix-blend-mode: multiply;
   /* transform: rotate(-270deg); */
