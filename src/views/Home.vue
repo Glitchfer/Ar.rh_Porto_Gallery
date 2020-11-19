@@ -68,14 +68,14 @@ export default {
     Skills
   },
   mounted() {
-    // if (
-    //   this.$router.history.current.hash === '#landing' ||
-    //   this.$router.history.current.hash === ''
-    // ) {
-    //   document
-    //     .getElementById('about')
-    //     .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
-    // }
+    if (
+      // this.$router.history.current.hash === '#landing' ||
+      this.$router.history.current.hash === ''
+    ) {
+      document
+        .getElementById('about')
+        .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
+    }
   },
   methods: {
     scrollPoint(data) {

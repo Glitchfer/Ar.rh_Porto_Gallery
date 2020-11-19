@@ -7,18 +7,64 @@
     <span class="q"></span>
     <div class="layer1"></div>
     <kinesis-container class="icon" :duration="Number(15000)">
-      <kinesis-element
-        class="elm"
-        :strength="Math.random() * (30 - -30) + -30"
-        v-for="(item, index) in basic"
-        :key="index"
-      >
-        <div class="kin">
-          <img :src="require(`../assets/img/${item.path}`)" :alt="item.path" />
-          <p>{{ item.name }}</p>
-        </div></kinesis-element
-      >
+      <div v-if="onBasic === true">
+        <kinesis-element
+          class="elm"
+          :strength="Math.random() * (30 - -30) + -30"
+          v-for="(item, index) in basic"
+          :key="index"
+        >
+          <div class="kin">
+            <img
+              :src="require(`../assets/img/${item.path}`)"
+              :alt="item.path"
+            />
+            <p>{{ item.name }}</p>
+          </div></kinesis-element
+        >
+      </div>
+
+      <div v-if="onBasicFilter === true">
+        <kinesis-element
+          class="elm"
+          :strength="Math.random() * (30 - -30) + -30"
+          v-for="(item, index) in basicFilter"
+          :key="index"
+        >
+          <div class="kin">
+            <img
+              :src="require(`../assets/img/${item.path}`)"
+              :alt="item.path"
+            />
+            <p>{{ item.name }}</p>
+          </div></kinesis-element
+        >
+      </div>
+
+      <div v-if="onLearn === true">
+        <kinesis-element
+          class="elm"
+          :strength="Math.random() * (30 - -30) + -30"
+          v-for="(item, index) in learn"
+          :key="index"
+        >
+          <div class="kin">
+            <img
+              :src="require(`../assets/img/${item.path}`)"
+              :alt="item.path"
+            />
+            <p>{{ item.name }}</p>
+          </div></kinesis-element
+        >
+      </div>
     </kinesis-container>
+    <div class="skillOptions" style="position: absolute; right: 0; zIndex: 6;">
+      <button @click="skillFilter('main')">Technical Skills</button>
+      <button @click="skillFilter('basic')">Basically</button>
+      <button @click="skillFilter('support')">Support</button>
+      <button @click="skillFilter('learn')">Willing to learn</button>
+      <button @click="skillFilter('others')">Others</button>
+    </div>
   </div>
 </template>
 
@@ -32,50 +78,62 @@ export default {
       scrollDistance: 0,
       x: 0,
       y: 0,
+      basicFilter: [],
       basic: [
         {
           path: 'html.png',
-          name: 'HTML'
+          name: 'HTML',
+          type: 'basic'
         },
         {
           path: 'css3.png',
-          name: 'CSS'
+          name: 'CSS',
+          type: 'basic'
         },
         {
           path: 'js.png',
-          name: 'Javascript'
+          name: 'Javascript',
+          type: 'basic'
         },
         {
           path: 'vueIcon.png',
-          name: 'Vuejs'
+          name: 'Vuejs',
+          type: 'basic'
         },
         {
           path: 'nodeJs.png',
-          name: 'Nodejs'
+          name: 'Nodejs',
+          type: 'basic'
         },
         {
           path: 'express.png',
-          name: 'Expressjs'
+          name: 'Expressjs',
+          type: 'basic'
         },
         {
           path: 'bootstrap-4.png',
-          name: 'Bootstrap'
+          name: 'Bootstrap',
+          type: 'support'
         },
         {
           path: 'mysql.png',
-          name: 'MySQL'
+          name: 'MySQL',
+          type: 'basic'
         },
         {
           path: 'aws(1).png',
-          name: 'AWS'
+          name: 'AWS',
+          type: 'support'
         },
         {
           path: 'git(1).png',
-          name: 'GIT'
+          name: 'GIT',
+          type: 'support'
         },
         {
           path: 'redis.png',
-          name: 'Redis'
+          name: 'Redis',
+          type: 'support'
         }
       ],
       learn: [
@@ -92,11 +150,40 @@ export default {
           name: 'Go'
         }
       ],
+      others: [
+        {
+          path: 'react-js.png',
+          name: 'MS Word'
+        },
+        {
+          path: 'react-js.png',
+          name: 'MS Excell'
+        },
+        {
+          path: 'react-js.png',
+          name: 'MS Power Point'
+        },
+        {
+          path: 'react-js.png',
+          name: 'Photoshop'
+        },
+        {
+          path: 'react-js.png',
+          name: 'Vegas Pro'
+        },
+        {
+          path: 'react-js.png',
+          name: 'Blender'
+        }
+      ],
       divs: document.getElementsByClassName('elm'),
       kin: document.getElementsByClassName('kin'),
       divWidth: 0,
       divHeight: 0,
-      randomPalcement: false
+      randomPalcement: false,
+      onBasic: true,
+      onBasicFilter: false,
+      onLearn: false
     }
   },
   mounted() {
@@ -149,8 +236,54 @@ export default {
   },
   computed: {
     ...mapGetters(['getScrollDistance'])
+    // basics() {
+    //   return this.basic.filter(function(item) {
+    //     return item.type === 'basic'
+    //   })
+    // }
   },
   methods: {
+    skillFilter(value) {
+      switch (value) {
+        case 'main':
+          this.onBasic = true
+          this.onBasicFilter = false
+          this.onLearn = false
+          break
+
+        case 'basic':
+          this.onBasic = false
+          this.onBasicFilter = true
+          this.onLearn = false
+
+          break
+
+        case 'support':
+          this.onBasic = false
+          this.onBasicFilter = true
+          this.onLearn = false
+          break
+
+        case 'learn':
+          this.onBasic = false
+          this.onBasicFilter = false
+          this.onLearn = true
+          break
+
+        case 'others':
+          alert('Under Development')
+          break
+      }
+      if (value === 'basic' || value === 'support') {
+        var arr = this.basic.filter(function(item) {
+          return item.type === value
+        })
+
+        this.basicFilter = arr
+      }
+
+      this.setPosition()
+    },
     setPosition() {
       if (this.randomPalcement === false) {
         let distance = 3
@@ -208,6 +341,7 @@ export default {
       return yDist
     },
     randomDiv() {
+      // pindahan dari mounted
       // var particles = []
       // for (var i = 0; i < 4; i++) {
       //   let randomX = Math.floor(Math.random() * (this.divWidth - 0) + 0)
@@ -456,5 +590,17 @@ export default {
     transparent 65%,
     rgba(255, 255, 255, 0.4) 100%
   );
+}
+
+.skillOptions {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0 5px 5px;
+  top: 100px;
+}
+.skillOptions button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid black;
+  border-radius: 3px 0 0 3px;
 }
 </style>
