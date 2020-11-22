@@ -51,11 +51,14 @@
       </div>
     </b-col>
     <Skills />
+    <Portofolio />
   </b-container>
 </template>
 <script>
 import Navigate from '../components/Navigation'
 import Skills from '../components/Skills'
+import Portofolio from '../components/Portofolio'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   data() {
@@ -65,7 +68,8 @@ export default {
   },
   components: {
     Navigate,
-    Skills
+    Skills,
+    Portofolio
   },
   mounted() {
     if (
@@ -75,6 +79,19 @@ export default {
       document
         .getElementById('about')
         .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
+    }
+  },
+  computed: {
+    ...mapGetters(['getScrollDistance'])
+  },
+  updated() {
+    if (this.getScrollDistance > 558) {
+      document
+        .getElementById('about')
+        .style.setProperty('transform', ' translateX(' + 1200 + 'px)')
+      document
+        .getElementById('landing')
+        .style.setProperty('transform', ' translateX(' + -100 + '%)')
     }
   },
   methods: {
@@ -149,14 +166,8 @@ export default {
 </script>
 
 <style scoped>
-/* :root {
-  --play-state: paused;
-} */
 .landing {
-  /* height: 200vh; */
   padding: 0;
-  /* background-color: rgb(0, 0, 0); */
-  /* background-color: rgba(18, 155, 125, 0.322); */
   background-image: linear-gradient(
     -125deg,
     rgba(4, 172, 144, 0.63),

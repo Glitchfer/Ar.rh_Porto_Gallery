@@ -1,6 +1,7 @@
 <template>
   <div id="Skills" class="skills" @mousemove="skillCoordinate">
-    <h1>TECHNICAL <br />SKILLS</h1>
+    <h1 v-if="text === ''">TECHNICAL <br />SKILLS</h1>
+    <h2 class="oth" v-else>{{ text }}</h2>
     <h5 style="position:absolute; top:0; left:0; display:none;">
       {{ getScrollDistance }}
     </h5>
@@ -59,11 +60,16 @@
       </div>
     </kinesis-container>
     <div class="skillOptions" style="position: absolute; right: 0; zIndex: 6;">
-      <button @click="skillFilter('main')">Technical Skills</button>
-      <button @click="skillFilter('basic')">Basically</button>
-      <button @click="skillFilter('support')">Support</button>
-      <button @click="skillFilter('learn')">Willing to learn</button>
-      <button @click="skillFilter('others')">Others</button>
+      <button @click="skillFilter('main')">Tch</button>
+      <button @click="skillFilter('basic')">Bsc</button>
+      <button @click="skillFilter('learn')">Lrn</button>
+      <button @click="skillFilter('support')">Oth</button>
+      <!-- <button @click="skillFilter('others')">Others</button> -->
+    </div>
+    <div class="random-toggle" style="zIndex: 6;">
+      <p>Random</p>
+      <button @click="randomActive('on')">On</button>
+      <button @click="randomActive('on')">Off</button>
     </div>
   </div>
 </template>
@@ -75,6 +81,7 @@ export default {
   components: {},
   data() {
     return {
+      text: '',
       scrollDistance: 0,
       x: 0,
       y: 0,
@@ -243,18 +250,27 @@ export default {
     // }
   },
   methods: {
+    randomActive(value) {
+      if (value === 'on') {
+        alert('this feature is disabled')
+      } else {
+        alert('this feature is disabled')
+      }
+    },
     skillFilter(value) {
       switch (value) {
         case 'main':
           this.onBasic = true
           this.onBasicFilter = false
           this.onLearn = false
+          this.text = ''
           break
 
         case 'basic':
           this.onBasic = false
           this.onBasicFilter = true
           this.onLearn = false
+          this.text = 'BASIC SKILLS'
 
           break
 
@@ -262,12 +278,14 @@ export default {
           this.onBasic = false
           this.onBasicFilter = true
           this.onLearn = false
+          this.text = 'OTHERS'
           break
 
         case 'learn':
           this.onBasic = false
           this.onBasicFilter = false
           this.onLearn = true
+          this.text = 'WILLING TO LEARN'
           break
 
         case 'others':
@@ -298,10 +316,10 @@ export default {
         }
 
         for (let i = 0; i < this.divs.length; i++) {
-          if (this.getScrollDistance < 788) {
+          if (this.getScrollDistance < 708) {
             this.kin[i].classList.remove('bounce-out')
             this.kin[i].classList.add('fade-in')
-          } else if (this.getScrollDistance > 787) {
+          } else if (this.getScrollDistance > 707) {
             this.kin[i].classList.remove('fade-in')
             this.kin[i].classList.add('bounce-out')
             // document.getElementsByClassName('.bounce-out')[i].style.animation =
@@ -375,15 +393,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.random-toggle {
+  display: flex;
+  position: absolute;
+  background: rgba(243, 243, 243, 0.918);
+  top: 25px;
+  left: 30px;
+  padding: 5px 5px 5px 10px;
+}
+.random-toggle p {
+  margin: 0 5px 5px 0;
+  color: #0169604f;
+}
+.random-toggle button {
+  border-radius: 10px;
+  background: #08dfcd11;
+  color: #0169604f;
+  width: 40px;
+  height: 30px;
+  font-size: 12px;
+  margin-right: 5px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 3px rgba(60, 124, 110, 0.562), 0px 0px 3px #00998c3d,
+    0px 0px 3px #02c5a552;
+}
+.random-toggle button {
+  outline: none;
+  border: none;
+}
+.random-toggle button:hover {
+  background: #08dfcdc5;
+  color: #092b28be;
+}
+.random-toggle button:active {
+  border: 2px solid black;
+  color: white;
+}
+
 #Skills {
-  // background: rgb(255, 255, 25s
   background-color: rgb(255, 255, 255);
-  // background-image: linear-gradient(
-  //   90deg,
-  //   rgba(255, 255, 255, 0.726),
-  //   rgba(0, 219, 219, 0.534)
-  // );
-  // mix-blend-mode: difference;
   position: relative;
   display: flex;
   justify-content: center;
@@ -412,6 +460,25 @@ export default {
   filter: drop-shadow(-3px -3px 2px rgba(241, 241, 241, 0.534))
     drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2))
     drop-shadow(15px 15px 15px rgba(0, 0, 0, 0.2));
+  z-index: 6;
+}
+
+#Skills .oth {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgba(237, 243, 243, 0.452);
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  width: 700px;
+  font-size: 92px;
+  font-weight: bold;
+  text-align: right;
+  letter-spacing: 20px;
+  // transform: rotateZ(-90deg);
+  filter: drop-shadow(-3px -3px 2px rgba(241, 241, 241, 0.534))
+    drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2))
+    drop-shadow(15px 15px 15px rgba(0, 0, 0, 0.2));
+  z-index: 6;
 }
 #Skills .q {
   position: absolute;
@@ -595,12 +662,32 @@ export default {
 .skillOptions {
   display: flex;
   flex-direction: column;
-  padding: 5px 0 5px 5px;
-  top: 100px;
+  justify-content: space-between;
+  top: 40%;
+  height: 130px;
+  width: 35px;
 }
 .skillOptions button {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid black;
-  border-radius: 3px 0 0 3px;
+  background: #ffffff;
+  color: #0169604f;
+  border: 1px solid rgb(255, 255, 255);
+  text-align: left;
+  width: 150px;
+  overflow: hidden;
+  box-shadow: 0px 0px 3px rgba(60, 124, 110, 0.562), 0px 0px 3px #00998c3d,
+    0px 0px 3px #02c5a552;
+}
+
+.skillOptions button {
+  outline: none;
+  border: none;
+}
+.skillOptions button:hover {
+  background: #08dfcdc5;
+  color: #092b28be;
+}
+.skillOptions button:active {
+  border: px solid black;
+  color: white;
 }
 </style>
