@@ -44,6 +44,7 @@ body::-webkit-scrollbar {
   color: #000000;
   cursor: none;
   min-height: 100vh;
+  overflow: hidden;
 }
 #pointer {
   background-color: rgb(255, 255, 255);
