@@ -52,6 +52,20 @@
     </b-col>
     <Skills />
     <Portofolio />
+    <footer id="contact">
+      <!-- <div style="font-size: 2rem;">
+        <b-icon icon="telephone"></b-icon>
+      </div> -->
+      <div class="contact">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
+        <p>© 2020 Rahman. All Rights Reserved</p>
+      </div>
+    </footer>
   </b-container>
 </template>
 <script>
@@ -166,11 +180,37 @@ export default {
 </script>
 
 <style scoped>
+footer {
+  margin-top: 50px;
+  background: rgb(20, 20, 20);
+  width: 100%;
+  height: 300px;
+  color: white;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0 70px;
+}
+footer div {
+  border: 1px solid white;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+footer .contact div {
+  position: relative;
+  width: 25%;
+  height: 230px;
+  border: 1px solid white;
+  position: relative;
+}
 .landing {
   padding: 0;
   background-image: linear-gradient(
     -125deg,
-    rgba(4, 172, 144, 0.63),
+    rgba(255, 255, 255, 0.63),
     rgba(255, 255, 255, 0.651)
   );
 }

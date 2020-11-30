@@ -444,8 +444,6 @@ export default {
   z-index: 1;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: -2px -2px 20px rgba(60, 124, 110, 0.562), -2px -2px 20px #00998c3d,
-    -2px -2px 20px #02c5a552;
 }
 #Skills h1:nth-child(1) {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -497,7 +495,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgb(0, 255, 200);
+  background-color: rgba(161, 161, 161, 0.459);
   background-image: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.726),
@@ -515,7 +513,7 @@ export default {
   background-image: linear-gradient(
     125deg,
     rgba(4, 19, 16, 0.014),
-    rgba(31, 238, 203, 0.582),
+    rgba(252, 252, 252, 0.582),
     rgba(0, 0, 0, 0.021)
   );
   mix-blend-mode: saturation;
@@ -537,8 +535,8 @@ export default {
   overflow: hidden;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.199);
-  box-shadow: inset -2px -2px 20px rgba(60, 124, 110, 0.562),
-    inset -2px -2px 20px #00998c3d, inset -2px -2px 20px #02c5a552;
+  box-shadow: inset -2px -2px 10px rgba(60, 124, 110, 0.562),
+    inset -2px -2px 5px #05534d3d, inset -2px -2px 5px #0b645552;
 }
 .icon .elm {
   position: absolute;
