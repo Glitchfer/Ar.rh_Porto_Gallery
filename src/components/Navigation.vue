@@ -2,30 +2,35 @@
   <div id="Navigate" class="Navigate">
     <a
       class="r-1"
+      href="#landing"
       style="marginLeft: 20px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('home')"
       >Home</a
     >
     <a
       class="r-2"
+      href="#about"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('about')"
       >About
     </a>
     <a
       class="r-3"
+      href="#Skills"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('skill')"
       >Skills</a
     >
     <a
       class="r-4"
+      href="#portofolio"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('porto')"
       >Portofolio</a
     >
     <a
       class="r-5"
+      href="#contact"
       style="marginLeft: 45px;  fontWeight: bold; textDecoration: none; "
       @click="navNimate('contact')"
       >Contact</a
@@ -58,29 +63,29 @@ export default {
     //   document.getElementById('Navigate').classList.add('navMotion')
     // }
 
-    if (this.$router.history.current.hash === '#about') {
-      document.getElementsByClassName('r-1')[0].classList.remove('rl')
-      document.getElementsByClassName('r-2')[0].classList.add('rl-3')
-      document.documentElement.style.setProperty('--width-before', '56px')
-      document.documentElement.style.setProperty('--width-after', '51px')
-    } else if (this.$router.history.current.hash === '#Skills') {
-      document.getElementsByClassName('r-1')[0].classList.remove('rl')
-      document.getElementsByClassName('r-3')[0].classList.add('rl-3')
-      document.documentElement.style.setProperty('--width-before', '45px')
-      document.documentElement.style.setProperty('--width-after', '41px')
-    } else if (this.$router.history.current.hash === '#portofolio') {
-      document.getElementsByClassName('r-1')[0].classList.remove('rl')
-      document.getElementsByClassName('r-4')[0].classList.add('rl-3')
-      document.documentElement.style.setProperty('--width-before', '83px')
-      document.documentElement.style.setProperty('--width-after', '79px')
-    } else if (this.$router.history.current.hash === '#contact') {
-      document.getElementsByClassName('r-1')[0].classList.remove('rl')
-      document.getElementsByClassName('r-5')[0].classList.add('rl-3')
-      document.documentElement.style.setProperty('--width-before', '68px')
-      document.documentElement.style.setProperty('--width-after', '63.5px')
-    } else {
-      document.getElementsByClassName('r-1')[0].classList.add('rl')
-    }
+    // if (this.$router.history.current.hash === '#about') {
+    //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+    //   document.getElementsByClassName('r-2')[0].classList.add('rl-3')
+    //   document.documentElement.style.setProperty('--width-before', '56px')
+    //   document.documentElement.style.setProperty('--width-after', '51px')
+    // } else if (this.$router.history.current.hash === '#Skills') {
+    //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+    //   document.getElementsByClassName('r-3')[0].classList.add('rl-3')
+    //   document.documentElement.style.setProperty('--width-before', '45px')
+    //   document.documentElement.style.setProperty('--width-after', '41px')
+    // } else if (this.$router.history.current.hash === '#portofolio') {
+    //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+    //   document.getElementsByClassName('r-4')[0].classList.add('rl-3')
+    //   document.documentElement.style.setProperty('--width-before', '83px')
+    //   document.documentElement.style.setProperty('--width-after', '79px')
+    // } else if (this.$router.history.current.hash === '#contact') {
+    //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+    //   document.getElementsByClassName('r-5')[0].classList.add('rl-3')
+    //   document.documentElement.style.setProperty('--width-before', '68px')
+    //   document.documentElement.style.setProperty('--width-after', '63.5px')
+    // } else {
+    //   document.getElementsByClassName('r-1')[0].classList.add('rl')
+    // }
 
     // ================================================================================================
     // ------cara merubah css variable property
@@ -102,41 +107,41 @@ export default {
       e.target.appendChild(card)
     },
     navNimate(val) {
-      switch (val) {
-        case 'home':
-          document.getElementsByClassName('r-1')[0].classList.add('rl')
-          document.getElementsByClassName('r-1')[0].classList.remove('rl-1')
-          document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
-          break
-        case 'about':
-          document.getElementsByClassName('r-1')[0].classList.remove('rl')
-          document.getElementsByClassName('r-2')[0].classList.remove('rl-2')
-          document.getElementsByClassName('r-2')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '56px')
-          document.documentElement.style.setProperty('--width-after', '51px')
-          break
-        case 'skill':
-          document.getElementsByClassName('r-1')[0].classList.remove('rl')
-          document.getElementsByClassName('r-3')[0].classList.remove('rl-2')
-          document.getElementsByClassName('r-3')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '45px')
-          document.documentElement.style.setProperty('--width-after', '41px')
-          break
-        case 'porto':
-          document.getElementsByClassName('r-1')[0].classList.remove('rl')
-          document.getElementsByClassName('r-4')[0].classList.remove('rl-2')
-          document.getElementsByClassName('r-4')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '83px')
-          document.documentElement.style.setProperty('--width-after', '79px')
-          break
-        case 'contact':
-          document.getElementsByClassName('r-1')[0].classList.remove('rl')
-          document.getElementsByClassName('r-5')[0].classList.remove('rl-2')
-          document.getElementsByClassName('r-5')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '68px')
-          document.documentElement.style.setProperty('--width-after', '63.5px')
-          break
-      }
+      // switch (val) {
+      //   case 'home':
+      //     document.getElementsByClassName('r-1')[0].classList.add('rl')
+      //     document.getElementsByClassName('r-1')[0].classList.remove('rl-1')
+      //     document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+      //     break
+      //   case 'about':
+      //     document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //     document.getElementsByClassName('r-2')[0].classList.remove('rl-2')
+      //     document.getElementsByClassName('r-2')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '56px')
+      //     document.documentElement.style.setProperty('--width-after', '51px')
+      //     break
+      //   case 'skill':
+      //     document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //     document.getElementsByClassName('r-3')[0].classList.remove('rl-2')
+      //     document.getElementsByClassName('r-3')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '45px')
+      //     document.documentElement.style.setProperty('--width-after', '41px')
+      //     break
+      //   case 'porto':
+      //     document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //     document.getElementsByClassName('r-4')[0].classList.remove('rl-2')
+      //     document.getElementsByClassName('r-4')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '83px')
+      //     document.documentElement.style.setProperty('--width-after', '79px')
+      //     break
+      //   case 'contact':
+      //     document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //     document.getElementsByClassName('r-5')[0].classList.remove('rl-2')
+      //     document.getElementsByClassName('r-5')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '68px')
+      //     document.documentElement.style.setProperty('--width-after', '63.5px')
+      //     break
+      // }
     },
     getScrollNum(event) {
       const roll = document.documentElement.scrollTop
@@ -151,88 +156,88 @@ export default {
       // }
     },
     navSelect(event) {
-      if (event.clientX > 545 && event.clientX < 605 && event.clientY < 65) {
-        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-1')[0].classList.add('rl-1')
-        document.documentElement.style.setProperty('--width-before', '55px')
-        document.documentElement.style.setProperty('--width-after', '50px')
-      } else if (
-        event.clientX > 635 &&
-        event.clientX < 691 &&
-        event.clientY < 65
-      ) {
-        document.getElementsByClassName('r-1')[0].classList.remove('rl')
-        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-2')[0].classList.add('rl-2')
-        document.documentElement.style.setProperty('--width-before', '56px')
-        document.documentElement.style.setProperty('--width-after', '51px')
-      } else if (
-        event.clientX > 727 &&
-        event.clientX < 781 &&
-        event.clientY < 65
-      ) {
-        document.getElementsByClassName('r-1')[0].classList.remove('rl')
-        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-3')[0].classList.add('rl-2')
-        document.documentElement.style.setProperty('--width-before', '45px')
-        document.documentElement.style.setProperty('--width-after', '41px')
-      } else if (
-        event.clientX > 804 &&
-        event.clientX < 880 &&
-        event.clientY < 65
-      ) {
-        document.getElementsByClassName('r-1')[0].classList.remove('rl')
-        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-4')[0].classList.add('rl-2')
-        document.documentElement.style.setProperty('--width-before', '83px')
-        document.documentElement.style.setProperty('--width-after', '79px')
-      } else if (
-        event.clientX > 923 &&
-        event.clientX < 983 &&
-        event.clientY < 65
-      ) {
-        document.getElementsByClassName('r-1')[0].classList.remove('rl')
-        document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
-        document.getElementsByClassName('r-5')[0].classList.add('rl-2')
-        document.documentElement.style.setProperty('--width-before', '68px')
-        document.documentElement.style.setProperty('--width-after', '63.5px')
-      } else {
-        document.getElementsByClassName('r-1')[0].classList.remove('rl-1')
-        document.getElementsByClassName('r-2')[0].classList.remove('rl-2')
-        document.getElementsByClassName('r-3')[0].classList.remove('rl-2')
-        document.getElementsByClassName('r-4')[0].classList.remove('rl-2')
-        document.getElementsByClassName('r-5')[0].classList.remove('rl-2')
-        if (this.$router.history.current.hash === '#about') {
-          document.getElementsByClassName('r-2')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '56px')
-          document.documentElement.style.setProperty('--width-after', '51px')
-        } else if (this.$router.history.current.hash === '#Skills') {
-          document.getElementsByClassName('r-3')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '45px')
-          document.documentElement.style.setProperty('--width-after', '41px')
-        } else if (this.$router.history.current.hash === '#portofolio') {
-          document.getElementsByClassName('r-4')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '83px')
-          document.documentElement.style.setProperty('--width-after', '79px')
-        } else if (this.$router.history.current.hash === '#contact') {
-          document.getElementsByClassName('r-5')[0].classList.add('rl-3')
-          document.documentElement.style.setProperty('--width-before', '68px')
-          document.documentElement.style.setProperty('--width-after', '63.5px')
-        } else {
-          document.getElementsByClassName('r-1')[0].classList.add('rl')
-        }
-      }
+      // if (event.clientX > 545 && event.clientX < 605 && event.clientY < 65) {
+      //   document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-1')[0].classList.add('rl-1')
+      //   document.documentElement.style.setProperty('--width-before', '55px')
+      //   document.documentElement.style.setProperty('--width-after', '50px')
+      // } else if (
+      //   event.clientX > 635 &&
+      //   event.clientX < 691 &&
+      //   event.clientY < 65
+      // ) {
+      //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //   document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-2')[0].classList.add('rl-2')
+      //   document.documentElement.style.setProperty('--width-before', '56px')
+      //   document.documentElement.style.setProperty('--width-after', '51px')
+      // } else if (
+      //   event.clientX > 727 &&
+      //   event.clientX < 781 &&
+      //   event.clientY < 65
+      // ) {
+      //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //   document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-3')[0].classList.add('rl-2')
+      //   document.documentElement.style.setProperty('--width-before', '45px')
+      //   document.documentElement.style.setProperty('--width-after', '41px')
+      // } else if (
+      //   event.clientX > 804 &&
+      //   event.clientX < 880 &&
+      //   event.clientY < 65
+      // ) {
+      //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //   document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-5')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-4')[0].classList.add('rl-2')
+      //   document.documentElement.style.setProperty('--width-before', '83px')
+      //   document.documentElement.style.setProperty('--width-after', '79px')
+      // } else if (
+      //   event.clientX > 923 &&
+      //   event.clientX < 983 &&
+      //   event.clientY < 65
+      // ) {
+      //   document.getElementsByClassName('r-1')[0].classList.remove('rl')
+      //   document.getElementsByClassName('r-2')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-3')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-4')[0].classList.remove('rl-3')
+      //   document.getElementsByClassName('r-5')[0].classList.add('rl-2')
+      //   document.documentElement.style.setProperty('--width-before', '68px')
+      //   document.documentElement.style.setProperty('--width-after', '63.5px')
+      // } else {
+      //   document.getElementsByClassName('r-1')[0].classList.remove('rl-1')
+      //   document.getElementsByClassName('r-2')[0].classList.remove('rl-2')
+      //   document.getElementsByClassName('r-3')[0].classList.remove('rl-2')
+      //   document.getElementsByClassName('r-4')[0].classList.remove('rl-2')
+      //   document.getElementsByClassName('r-5')[0].classList.remove('rl-2')
+      //   if (this.$router.history.current.hash === '#about') {
+      //     document.getElementsByClassName('r-2')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '56px')
+      //     document.documentElement.style.setProperty('--width-after', '51px')
+      //   } else if (this.$router.history.current.hash === '#Skills') {
+      //     document.getElementsByClassName('r-3')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '45px')
+      //     document.documentElement.style.setProperty('--width-after', '41px')
+      //   } else if (this.$router.history.current.hash === '#portofolio') {
+      //     document.getElementsByClassName('r-4')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '83px')
+      //     document.documentElement.style.setProperty('--width-after', '79px')
+      //   } else if (this.$router.history.current.hash === '#contact') {
+      //     document.getElementsByClassName('r-5')[0].classList.add('rl-3')
+      //     document.documentElement.style.setProperty('--width-before', '68px')
+      //     document.documentElement.style.setProperty('--width-after', '63.5px')
+      //   } else {
+      //     document.getElementsByClassName('r-1')[0].classList.add('rl')
+      //   }
+      // }
     }
   }
 }

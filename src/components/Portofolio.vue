@@ -73,9 +73,7 @@ export default {
   computed: {
     ...mapGetters(['getScrollDistance'])
   },
-  methods: {
-    methods: {}
-  }
+  methods: {}
 }
 </script>
 

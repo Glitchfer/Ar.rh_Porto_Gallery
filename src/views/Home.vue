@@ -15,8 +15,6 @@
       xl="12"
       id="landing"
     >
-      <!-- <nav> -->
-      <!-- </nav> -->
       <h3 class="welcomeh3" v-if="scrolled < 20">
         My <br />
         GALLERY
@@ -28,13 +26,15 @@
           Hi_ my name <br />
           Arif Rahman
         </h1>
+        <p>Website Developer</p>
+        <button class="btn-a">Download CV</button>
+        <button class="btn-b"><a href="#contact">Hire Me</a></button>
       </b-col>
     </b-col>
     <b-col cols="12" sm="12" md="12" lg="12" xl="12" class="aboutMe" id="about">
       <div class="profile-img"></div>
       <div class="satu">
         <h3 style="fontWeight: bold;">About Me</h3>
-        <p>Website Developer</p>
       </div>
       <div class="dua">
         <p>
@@ -53,19 +53,64 @@
     <Skills />
     <Portofolio />
     <footer id="contact">
-      <!-- <div style="font-size: 2rem;">
-        <b-icon icon="telephone"></b-icon>
-      </div> -->
       <div class="contact">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div style="padding: 0 10px">
+          <h5>
+            I will tell you a secret..
+          </h5>
+          <p>UI/UX design make my head pounding</p>
+          <p>
+            Feel free to say hi! <br />
+            if you want to colab with me
+          </p>
+        </div>
+        <div>
+          <div style="font-size: 20px;">
+            <b-icon icon="link"></b-icon>
+            <h5>Sort Link</h5>
+          </div>
+          <a href="#landing">Top</a>
+          <a href="#about">About</a>
+          <a href="#Skills">Skills</a>
+          <a href="#portofolio">Portofolio</a>
+        </div>
+        <div>
+          <div style="font-size: 20px;">
+            <b-icon icon="telephone"></b-icon>
+            <h5>Contact</h5>
+          </div>
+          <p>+62 8977286415</p>
+          <p>+62 8158124799</p>
+        </div>
+        <div>
+          <div style="font-size: 20px;">
+            <b-icon icon="envelope-open"></b-icon>
+            <h5>Email</h5>
+          </div>
+          <p>a1.arifrahman.1213@gmail.com</p>
+        </div>
       </div>
-      <div>
+      <div class="credit">
         <p>© 2020 Rahman. All Rights Reserved</p>
+        <div class="icns">
+          <a target="_blank" href="https://www.instagram.com/ar.if.rh/"
+            ><img src="../assets/img/instagram2.png" alt="instagram"
+          /></a>
+          <a target="_blank" href="https://www.facebook.com/arif.rh11"
+            ><img src="../assets/img/facebook(1).png" alt="facebook"
+          /></a>
+          <a target="_blank" href="https://www.linkedin.com/in/ar-if-rh/"
+            ><img src="../assets/img/linkedin(1).png" alt="linkedin"
+          /></a>
+          <a target="_blank" href="https://github.com/Glitchfer"
+            ><img src="../assets/img/github(1).png" alt="github"
+          /></a>
+        </div>
       </div>
     </footer>
+    <div class="fastNav">
+      <a href="#landing"><b-icon icon="chevron-up"></b-icon></a>
+    </div>
   </b-container>
 </template>
 <script>
@@ -86,41 +131,26 @@ export default {
     Portofolio
   },
   mounted() {
-    if (
-      // this.$router.history.current.hash === '#landing' ||
-      this.$router.history.current.hash === ''
-    ) {
-      document
-        .getElementById('about')
-        .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
-    }
+    // if (
+    //   this.$router.history.current.hash !== '#landing' ||
+    //   this.$router.history.current.hash !== ''
+    // ) {
+    //   document.getElementById('about').style.setProperty('opacity', '0')
+    // }
   },
   computed: {
     ...mapGetters(['getScrollDistance'])
   },
   updated() {
     if (this.getScrollDistance > 558) {
-      document
-        .getElementById('about')
-        .style.setProperty('transform', ' translateX(' + 1200 + 'px)')
-      document
-        .getElementById('landing')
-        .style.setProperty('transform', ' translateX(' + -100 + '%)')
+      document.getElementById('about').style.setProperty('opacity', '0')
     }
   },
   methods: {
     scrollPoint(data) {
       this.scrolled = data
       if (data > 210 && data < 558) {
-        document
-          .getElementById('landing')
-          .style.setProperty('transform', ' translateX(' + 0 + '%)')
-        document
-          .getElementById('about')
-          .style.setProperty('transform', ' translateX(' + 0 + 'px)')
-        // document
-        //   .getElementById('about')
-        //   .style.setProperty('--play-state', 'running')
+        document.getElementById('about').style.setProperty('opacity', '1')
         setTimeout(() => {
           document
             .getElementById('about')
@@ -140,13 +170,12 @@ export default {
             .style.setProperty('opacity', 1)
           document
             .getElementsByClassName('dua')[0]
-            .style.setProperty('opacity', 1)
+            .style.setProperty('height', '200px')
+          document
+            .getElementsByClassName('dua')[0]
+            .style.setProperty('color', 'rgb(4, 231, 193')
         }, 1000)
       } else if (data < 210) {
-        document
-          .getElementById('about')
-          .style.setProperty('transform', ' translateX(' + -1410 + 'px)')
-
         document
           .getElementById('about')
           .style.setProperty(
@@ -162,17 +191,15 @@ export default {
           )
         document
           .getElementsByClassName('satu')[0]
-          .style.setProperty('opacity', 0)
+          .style.setProperty('opacity', '1')
         document
           .getElementsByClassName('dua')[0]
-          .style.setProperty('opacity', 0)
+          .style.setProperty('height', '0')
+        document
+          .getElementsByClassName('dua')[0]
+          .style.setProperty('color', 'white')
       } else if (data > 558 && data < 789) {
-        document
-          .getElementById('about')
-          .style.setProperty('transform', ' translateX(' + 1200 + 'px)')
-        document
-          .getElementById('landing')
-          .style.setProperty('transform', ' translateX(' + -100 + '%)')
+        document.getElementById('about').style.setProperty('opacity', '0')
       }
     }
   }
@@ -180,31 +207,144 @@ export default {
 </script>
 
 <style scoped>
+.fastNav {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 25%;
+  z-index: 1;
+  background-color: rgba(161, 161, 161, 0.726);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.726),
+    rgba(0, 219, 219, 0.216)
+  );
+  border: 2px solid rgba(0, 0, 0, 0.425);
+}
+.fastNav a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(35, 122, 108);
+  font-size: 18px;
+}
 footer {
   margin-top: 50px;
   background: rgb(0, 34, 26);
   width: 100%;
   height: 300px;
   color: white;
-  border: 1px solid white;
   display: flex;
   flex-direction: column;
   position: relative;
   padding: 0 70px;
 }
 footer div {
-  border: 1px solid white;
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
+footer .credit {
+  border: 1px solid rgba(255, 255, 255, 0.356);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  font-size: 14px;
+}
+footer .credit p {
+  margin: 0;
+}
+footer .credit .icns {
+  margin: 0;
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+footer .credit .icns a {
+  margin: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  margin-right: 15px;
+}
+footer .credit .icns a img {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
 footer .contact div {
+  padding-top: 15px;
   position: relative;
   width: 25%;
   height: 230px;
-  border: 1px solid white;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+footer .contact div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+footer .contact div:nth-child(2),
+footer .contact div:nth-child(3),
+footer .contact div:nth-child(4) {
+  padding-left: 70px;
+}
+
+footer .contact div:nth-child(2) div,
+footer .contact div:nth-child(3) div,
+footer .contact div:nth-child(4) div {
+  margin-bottom: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+footer .contact div:nth-child(2) div h5,
+footer .contact div:nth-child(3) div h5,
+footer .contact div:nth-child(4) div h5 {
+  font-size: 18px;
+  margin: 0;
+  position: relative;
+  left: 8px;
+  top: 3px;
+}
+
+footer .contact div:nth-child(2) a,
+footer .contact div:nth-child(3) p,
+footer .contact div:nth-child(4) p {
+  font-size: 14px;
+  margin: 0 0 5px 0;
+  color: white;
+  text-decoration: none;
 }
 .landing {
   padding: 0;
@@ -431,6 +571,65 @@ footer .contact div {
   filter: blur(9px);
   transform: scale(2);
 }
+.hero p {
+  width: 400px;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  font-size: 26px;
+  bottom: 27%;
+  right: 16%;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  border: 1px solid rgb(13, 255, 215);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+.hero .btn-a {
+  padding: 5px 10px;
+  position: absolute;
+  color: rgba(12, 221, 204, 0.863);
+  font-weight: bolder;
+  font-size: 12px;
+  bottom: 22%;
+  right: 39%;
+  z-index: 1;
+  border: 1px solid rgb(13, 255, 215);
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.548);
+  border-radius: 5px;
+  outline: none;
+}
+.hero .btn-b {
+  padding: 5px 10px;
+  position: absolute;
+  font-weight: bolder;
+  font-size: 12px;
+  bottom: 22%;
+  right: 32%;
+  z-index: 1;
+  border: 1px solid rgb(13, 255, 215);
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.548);
+  border-radius: 5px;
+}
+.hero .btn-b a {
+  color: rgba(12, 221, 204, 0.863);
+  text-decoration: none;
+}
+.hero .btn-a:hover {
+  background: rgb(14, 241, 185);
+  color: black;
+  border: 2px solid rgb(254, 255, 255);
+}
+.hero .btn-b:hover {
+  background: rgb(14, 241, 185);
+  border: 2px solid rgb(254, 255, 255);
+}
+.hero .btn-b:hover a {
+  color: black;
+}
 /* -------------------------- */
 #about {
   --play-state: paused;
@@ -468,12 +667,6 @@ footer .contact div {
   box-shadow: inset 0px 0px 40px #00000050;
   filter: grayscale(1) contrast(130%);
   transform: var(--translate-one);
-  /* animation-name: var(--name-one);
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-play-state: var(--play-state); */
   transition: 1s;
 }
 @keyframes image-after {
@@ -495,13 +688,7 @@ footer .contact div {
   background-color: rgb(0, 0, 0);
   border: 7px solid rgb(0, 0, 0);
   transform: var(--translate-two);
-  /* animation-name: var(--name-two);
-  animation-duration: 1s;
-  animation-timing-function: ease-in;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-play-state: var(--play-state); */
-  transition: 1s;
+  transition: 0.5s;
 }
 @keyframes image-before {
   0% {
@@ -518,23 +705,32 @@ footer .contact div {
   left: -30px;
   font-size: 14px;
   font-weight: bold;
-  padding: 0 30px 0 30px;
+  padding: 20px 30px 0 30px;
   line-height: 10px;
   text-align: left;
-  opacity: 0;
-  transition: 0.3s;
+  opacity: 1;
+  transition: 0.1s;
+  border-radius: 3px;
+  border: 1px solid rgba(9, 110, 88, 0.274);
+  background: white;
+  filter: drop-shadow(4px 4px 2px rgba(40, 41, 41, 0.904));
 }
 .dua {
+  margin: 0 auto;
   top: -10px;
   left: -30px;
   box-sizing: border-box;
   grid-area: desc;
   position: relative;
   padding: 0 20px 0 30px;
-  color: black;
+  color: white;
   text-align: left;
   text-align: justify;
-  height: 200px;
-  transition: 1s;
+  width: 650px;
+  height: 0;
+  transition: 0.3s;
+  border: 1px solid black;
+  background: rgb(2, 2, 2);
+  border-radius: 0 0 10px 10px;
 }
 </style>
