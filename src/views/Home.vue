@@ -38,15 +38,23 @@
       </div>
       <div class="dua">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
-          labore sit quo ipsum, totam asperiores dicta beatae, doloribus
-          voluptatem eveniet explicabo perspiciatis, minima tempora perferendis
-          unde corporis. Porro consequuntur maxime enim velit vero ad rem
-          soluta, corporis iusto laboriosam minima praesentium asperiores quis
-          atque obcaecati aut vel labore neque et! Beatae vel nesciunt
-          architecto accusantium laudantium vero nihil soluta. Quam amet unde
-          sint? Ipsum rerum labore modi doloremque, dolorum ab delectus unde,
-          eveniet amet alias, rem fuga et asperiores repellat?.
+          Saya adalah seorang website developer yang memiliki background
+          pendidikan sebagai sarjana teknik industri. Saya lulus dari salah satu
+          perguruan tinggi di Indonesia pada 2018 lalu. Sedikit melenceng dari
+          background pendidikan yang saya tempuh, saya lebih memilih untuk
+          meningkatkan kemampuan saya pada bidang programming khususnya sebagai
+          website developer. Saya memilih untuk berkarir sebagai website
+          developer karena ketertarikan saya terhadap dunia programming, animasi
+          dan design, selain itu saya juga lebih senang bekerja dengan komputer
+          dibanding dengan pekerjaan lainnya. Keahlian ini saya dapatkan dari
+          hasil pembelajaran yang saya ikuti dari tutorial-tutorial di internet
+          dan juga berkat pelatihan secara intensif selama tiga bulan di salah
+          satu lembaga pelatihan yang terkenal saat ini. Berkat hal tersebut
+          saya jadi mendapatkan keahlian dalam pembuatan website dengan
+          menggunakan vueJs untuk frontend dan expressJs untuk backend. Sampai
+          saat ini sudah ada beberapa website yang pernah saya buat baik itu
+          dibuat dengan seorang diri maupun bersama tim. Kedepannya saya
+          berharap dapat menjadi seorang developer yang lebih handal lagi.
         </p>
       </div>
     </b-col>
@@ -735,5 +743,6 @@ footer .contact div:nth-child(4) p {
   border: 1px solid black;
   background: rgb(2, 2, 2);
   border-radius: 0 0 10px 10px;
+  overflow: auto;
 }
 </style>

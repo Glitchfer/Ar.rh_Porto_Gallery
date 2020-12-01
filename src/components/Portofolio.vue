@@ -8,8 +8,15 @@
         <div>
           <h3>KONTASAN</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda
-            sit maxime libero amet sint quam? Dignissimos voluptate..
+            KONTASAN merupakan aplikasi berbasi web yang digunakan untuk
+            membantu pekerjaan seorang kasir dalam mengelola proses order
+            makanan & minuman. Aplikasi ini memiliki fitur CRUD untuk mengelola
+            orderan seperti tambah menu, update menu, hapus menu, menampilkan
+            history penjualan, cari menu berdasarkan kategori, paginasi,
+            pengurutan, add order, cancel order, aktivitas login user (only in
+            database), kirim checkout ke email or download pdf. Aplikasi ini
+            dubuat menggunakan vue js dan express js, dan tambahan storage
+            external redis.
           </p>
           <a target="_blank" href="https://kontasan.netlify.app/">Visit web</a>
           <img src="../assets/porto/Menu_page.jpg" alt="" />
@@ -17,17 +24,12 @@
         <div>
           <h3>NONGKY</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut beatae
-            in laboriosam eligendi libero, officia expedita voluptates delectus
-            mollitia aliquam impedit architecto molestias. Tempora dolores,
-            maxime cum accusantium ratione repellendus, quisquam voluptates
-            adipisci dicta fugit cumque, modi atque. Reprehenderit aut tempore
-            at nobis ab sint sapiente cum obcaecati quia quam dolor iure dolores
-            ea nulla, deleniti in ducimus sunt consequatur necessitatibus
-            maiores, magni rerum soluta illum a? Animi, est vel. Omnis iusto vel
-            cupiditate unde ad voluptatum, rerum tenetur pariatur aspernatur! Ex
-            voluptates a, quia animi enim itaque sapiente maiores, temporibus
-            culpa non natus. Accusantium quod ducimus ad nihil! Modi.
+            NONGKY adalah aplikasi realtime chat berbasis web yang dibuat
+            menggunakan vue js, dan express js. Aplikasi ini memiliki fitur
+            realtime chat, login, register, reset password, google location,
+            cari teman, tambah teman, notifikasi pertemanan, notifikasi pesan
+            terbaru, update profile, tambah gambar dan video, dll. Fitur realtim
+            chat sendiri dibuat menggunakan socket io.
           </p>
           <a target="_blank" href="https://nongky.netlify.app/">Visit web</a>
           <img src="../assets/porto/ProfileFIT.jpg" alt="" />
@@ -35,9 +37,23 @@
         <div>
           <h3>PELLET</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-            vitae, temporibus perspiciatis corrupti voluptatibus inventore
-            mollitia. Magni aliquam molestias illum.
+            Pellet merupakan singkatan dari 'Payment E-Wallet'. Adalah aplikasi
+            berbasis web yang digunakan untuk melakukan pembayaran secara
+            online. Sama seperti aplikasi-aplikasi sejenisnya, pellet akan
+            memudahkan penggunanya dalam melakukan transaksi jual beli. Aplikasi
+            ini dilengkapi dengan fitur transfer dan top up. Fitur transfer
+            digunakan bila pengguna akan mengirimkan sejumlah uang kepada
+            pengguna lain, sedangkan fitu top up digunakan untuk menambahkan
+            saldo pengguna untuk keperluan transaksi nantinya. Pellet sendiri
+            dibuat menggunakan ExpressJs untuk configurasi APInya, serta VueJs
+            untuk keperluan styling dan konektifitas antara back-end dengan
+            front-end. Project ini dikerjakan secara tim yang beranggotakan 5
+            orang dalam waktu 1 minggu. Pada project ini saya bertugas sebagai
+            fullstack developer yang bertugas untuk membantu rekan-rekan saya
+            dalam menangani bagian front end maupun back end. Salah satu contoh
+            dari sisi front end, saya menangani style dari halaman transfer
+            beserta konektifitas dengan databasenya. Sedangkan dari sisi back
+            end saya menangani beberapa konfigurasi API untuk keperluan top up.
           </p>
           <a target="_blank" href="https://pellet.netlify.app/">Visit web</a>
           <img src="../assets/porto/dashboard.jpg" alt="" />
@@ -45,9 +61,15 @@
         <div>
           <h3>BADAG</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-            vitae, temporibus perspiciatis corrupti voluptatibus inventore
-            mollitia. Magni aliquam molestias illum.
+            BADAG adalah situs Job Portal Digital, dimana tempat untuk para
+            Jobseeker mencari pekerjaan yang berkualiatas, ataupun para pemilik
+            usaha untuk menemukan talent-talent terbaik untuk dipekerjakan.
+            Project ini dikerjakan oleh lima orang, dimana dua orang bertugas
+            sebagai backend developer dan dua orang sebagai frontend developer,
+            serta satu orang sebagai leader. Peran saya dalam project ini adalah
+            sebagai frontend developer yang betugas membuat tampilan beserta
+            fungsionalitas dari halaman login, register, reset password, serta
+            semua halaman untuk pengguna dari sisi pencari kerja.
           </p>
           <a target="_blank" href="https://badag.netlify.app/">Visit web</a>
           <img src="../assets/porto/landing.jpg" alt="" />
