@@ -174,6 +174,9 @@ export default {
               ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
             )
           document
+            .getElementById('about')
+            .style.setProperty('transform', ' translateX(' + 0 + '%)')
+          document
             .getElementsByClassName('satu')[0]
             .style.setProperty('opacity', 1)
           document
@@ -208,6 +211,9 @@ export default {
           .style.setProperty('color', 'white')
       } else if (data > 558 && data < 789) {
         document.getElementById('about').style.setProperty('opacity', '0')
+        document
+          .getElementById('about')
+          .style.setProperty('transform', ' translateX(' + -100 + '%)')
       }
     },
     downloadCV() {

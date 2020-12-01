@@ -66,10 +66,10 @@
       <button @click="skillFilter('support')">Oth</button>
       <!-- <button @click="skillFilter('others')">Others</button> -->
     </div>
-    <div class="random-toggle" style="zIndex: 6;">
+    <div class="random-toggle" style="zIndex:6;">
       <p>Random</p>
-      <button @click="randomActive('on')">On</button>
-      <button @click="randomActive('on')">Off</button>
+      <button class="btn-rndm" @click="randomActive('on')">On</button>
+      <button class="btn-rndm" @click="randomActive('on')">Off</button>
     </div>
   </div>
 </template>
@@ -396,16 +396,19 @@ export default {
 .random-toggle {
   display: flex;
   position: absolute;
-  background: rgba(243, 243, 243, 0.918);
+  background: rgba(255, 255, 255, 0.514);
   top: 25px;
-  left: 30px;
+  right: 150px;
   padding: 5px 5px 5px 10px;
+  border-radius: 5px;
 }
 .random-toggle p {
+  position: relative;
+  top: 3px;
   margin: 0 5px 5px 0;
   color: #0169604f;
 }
-.random-toggle button {
+.random-toggle .btn-rndm {
   border-radius: 10px;
   background: #08dfcd11;
   color: #0169604f;
@@ -417,15 +420,15 @@ export default {
   box-shadow: 0px 0px 3px rgba(60, 124, 110, 0.562), 0px 0px 3px #00998c3d,
     0px 0px 3px #02c5a552;
 }
-.random-toggle button {
+.random-toggle .btn-rndm {
   outline: none;
   border: none;
 }
-.random-toggle button:hover {
+.random-toggle .btn-rndm:hover {
   background: #08dfcdc5;
   color: #092b28be;
 }
-.random-toggle button:active {
+.random-toggle .btn-rndm:active {
   border: 2px solid black;
   color: white;
 }
@@ -498,7 +501,7 @@ export default {
   background-color: rgba(161, 161, 161, 0.459);
   background-image: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.726),
+    rgba(157, 161, 160, 0.726),
     rgba(0, 219, 219, 0.116)
   );
 }
@@ -513,7 +516,7 @@ export default {
   background-image: linear-gradient(
     125deg,
     rgba(4, 19, 16, 0.014),
-    rgba(252, 252, 252, 0.582),
+    rgba(218, 250, 242, 0.582),
     rgba(0, 0, 0, 0.021)
   );
   mix-blend-mode: saturation;
