@@ -1,7 +1,16 @@
 <template>
   <div id="app" @mousemove="pointerAxis">
-    <router-view />
-    <div id="pointer" :style="{ left: `${x}px`, top: `${y}px` }"></div>
+    <div class="aye">
+      <router-view />
+      <div id="pointer" :style="{ left: `${x}px`, top: `${y}px` }"></div>
+    </div>
+    <div class="oye">
+      <h1>
+        Display has been disabled <br />
+        <hr />
+        Browser screen must be more than 1170px
+      </h1>
+    </div>
   </div>
 </template>
 
@@ -58,5 +67,24 @@ body::-webkit-scrollbar {
   pointer-events: none;
   z-index: 99;
   mix-blend-mode: difference;
+}
+.oye {
+  display: none;
+}
+@media (max-width: 1170px) {
+  .aye {
+    display: none;
+  }
+  .oye {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .oye h1 {
+    position: relative;
+    font-size: 24px;
+  }
 }
 </style>

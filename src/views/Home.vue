@@ -27,7 +27,7 @@
           Arif Rahman
         </h1>
         <p>Website Developer</p>
-        <button class="btn-a">Download CV</button>
+        <button class="btn-a" @click="downloadCV">Download CV</button>
         <button class="btn-b"><a href="#contact">Hire Me</a></button>
       </b-col>
     </b-col>
@@ -201,6 +201,9 @@ export default {
       } else if (data > 558 && data < 789) {
         document.getElementById('about').style.setProperty('opacity', '0')
       }
+    },
+    downloadCV() {
+      alert('This feature is under development')
     }
   }
 }
