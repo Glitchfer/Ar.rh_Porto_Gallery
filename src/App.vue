@@ -1,15 +1,13 @@
 <template>
   <div id="app" @mousemove="pointerAxis">
+    <div class="oye">
+      <h1>
+        Responsive feature is still under development
+      </h1>
+    </div>
     <div class="aye">
       <router-view />
       <div id="pointer" :style="{ left: `${x}px`, top: `${y}px` }"></div>
-    </div>
-    <div class="oye">
-      <h1>
-        Display has been disabled <br />
-        <hr />
-        Browser screen must be more than 1170px
-      </h1>
     </div>
   </div>
 </template>
@@ -71,20 +69,28 @@ body::-webkit-scrollbar {
 .oye {
   display: none;
 }
-@media (max-width: 1170px) {
-  .aye {
+@media (max-width: 980px) {
+  /* .aye {
     display: none;
-  }
+  } */
   .oye {
+    position: fixed;
+    top: 35%;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 88;
   }
   .oye h1 {
     position: relative;
     font-size: 24px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
   }
 }
 </style>
