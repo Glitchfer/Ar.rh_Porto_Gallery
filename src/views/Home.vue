@@ -150,9 +150,9 @@ export default {
     ...mapGetters(['getScrollDistance'])
   },
   updated() {
-    if (this.getScrollDistance > 558) {
-      document.getElementById('about').style.setProperty('opacity', '0')
-    }
+    // if (this.getScrollDistance > 558) {
+    //   // document.getElementById('about').style.setProperty('top', '-30px')
+    // }
   },
   methods: {
     scrollPoint(data) {
@@ -173,9 +173,9 @@ export default {
               '--translate-two',
               ' translateX(' + 0 + 'px) translateY(' + 0 + 'px)'
             )
-          document
-            .getElementById('about')
-            .style.setProperty('transform', ' translateX(' + 0 + '%)')
+          // document
+          //   .getElementById('about')
+          //   .style.setProperty('transform', ' translateX(' + 0 + '%)')
           document
             .getElementsByClassName('satu')[0]
             .style.setProperty('opacity', 1)
@@ -185,35 +185,7 @@ export default {
           document
             .getElementsByClassName('dua')[0]
             .style.setProperty('color', 'rgb(4, 231, 193')
-        }, 1000)
-      } else if (data < 210) {
-        document
-          .getElementById('about')
-          .style.setProperty(
-            '--translate-one',
-            ' translateX(' + -10 + 'px) translateY(' + 10 + 'px)'
-          )
-
-        document
-          .getElementById('about')
-          .style.setProperty(
-            '--translate-two',
-            ' translateX(' + 20 + 'px) translateY(' + -20 + 'px)'
-          )
-        document
-          .getElementsByClassName('satu')[0]
-          .style.setProperty('opacity', '1')
-        document
-          .getElementsByClassName('dua')[0]
-          .style.setProperty('height', '0')
-        document
-          .getElementsByClassName('dua')[0]
-          .style.setProperty('color', 'white')
-      } else if (data > 558 && data < 789) {
-        document.getElementById('about').style.setProperty('opacity', '0')
-        document
-          .getElementById('about')
-          .style.setProperty('transform', ' translateX(' + -100 + '%)')
+        }, 300)
       }
     },
     downloadCV() {
@@ -652,9 +624,10 @@ footer .contact div:nth-child(4) p {
   --play-state: paused;
   --translate-one: translateX(-10px) translateY(10px);
   --translate-two: translateX(20px) translateY(-20px);
-  margin: -90px auto;
-  position: sticky;
-  top: 210px;
+  margin: -60px auto 0;
+  position: relative;
+  top: -30px;
+  /* top: 210px; */
   z-index: 13;
   border-radius: 25px;
   padding: 25px 40px 25px 40px;

@@ -3,62 +3,47 @@
     <h1 v-if="text === ''">TECHNICAL <br />SKILLS</h1>
     <h2 class="oth" v-else>{{ text }}</h2>
     <h5 style="position:absolute; top:0; left:0; display:none;">
-      {{ getScrollDistance }}
+      <!-- {{ getScrollDistance }} -->
     </h5>
     <span class="q"></span>
     <div class="layer1"></div>
-    <kinesis-container class="icon" :duration="Number(15000)">
+    <div class="icon">
       <div v-if="onBasic === true">
-        <kinesis-element
-          class="elm"
-          :strength="Math.random() * (30 - -30) + -30"
-          v-for="(item, index) in basic"
-          :key="index"
-        >
+        <div class="elm" v-for="(item, index) in basic" :key="index">
           <div class="kin">
             <img
               :src="require(`../assets/img/${item.path}`)"
               :alt="item.path"
             />
             <p>{{ item.name }}</p>
-          </div></kinesis-element
-        >
+          </div>
+        </div>
       </div>
 
       <div v-if="onBasicFilter === true">
-        <kinesis-element
-          class="elm"
-          :strength="Math.random() * (30 - -30) + -30"
-          v-for="(item, index) in basicFilter"
-          :key="index"
-        >
+        <div class="elm" v-for="(item, index) in basicFilter" :key="index">
           <div class="kin">
             <img
               :src="require(`../assets/img/${item.path}`)"
               :alt="item.path"
             />
             <p>{{ item.name }}</p>
-          </div></kinesis-element
-        >
+          </div>
+        </div>
       </div>
 
       <div v-if="onLearn === true">
-        <kinesis-element
-          class="elm"
-          :strength="Math.random() * (30 - -30) + -30"
-          v-for="(item, index) in learn"
-          :key="index"
-        >
+        <div class="elm" v-for="(item, index) in learn" :key="index">
           <div class="kin">
             <img
               :src="require(`../assets/img/${item.path}`)"
               :alt="item.path"
             />
             <p>{{ item.name }}</p>
-          </div></kinesis-element
-        >
+          </div>
+        </div>
       </div>
-    </kinesis-container>
+    </div>
     <div class="skillOptions" style="position: absolute; right: 0; zIndex: 6;">
       <button @click="skillFilter('main')">Tch</button>
       <button @click="skillFilter('basic')">Bsc</button>
@@ -75,7 +60,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   name: 'Skills',
   components: {},
@@ -198,42 +183,38 @@ export default {
     this.divHeight = document.querySelector('.icon').offsetHeight - 150
 
     if (this.randomPalcement === true) {
-      var objects = []
-      var protect = 0
-      // for (var i = 0; i < 11; i++) {
-      while (objects.length < 11) {
-        const randomX = Math.floor(Math.random() * (this.divWidth - 0) + 0)
-        const randomY = Math.floor(Math.random() * (this.divHeight - 0) + 0)
-        const radius = 100
-        var object = {
-          x: randomX,
-          y: randomY,
-          radius: radius
-        }
-
-        var overlapping = false
-        for (var j = 0; j < objects.length; j++) {
-          var other = objects[j]
-          var dist = this.distance(object.x, object.y, other.x, other.y)
-          if (dist - radius * 2 < 0) {
-            overlapping = true
-          }
-        }
-
-        if (!overlapping) {
-          objects.push(object)
-        }
-
-        protect++
-        if (protect > 200000) {
-          break
-        }
-      }
-
-      for (var l = 0; l < objects.length; l++) {
-        this.divs[l].style.left = objects[l].x + 'px'
-        this.divs[l].style.top = objects[l].y + 'px'
-      }
+      // var objects = []
+      // var protect = 0
+      // // for (var i = 0; i < 11; i++) {
+      // while (objects.length < 11) {
+      //   const randomX = Math.floor(Math.random() * (this.divWidth - 0) + 0)
+      //   const randomY = Math.floor(Math.random() * (this.divHeight - 0) + 0)
+      //   const radius = 100
+      //   var object = {
+      //     x: randomX,
+      //     y: randomY,
+      //     radius: radius
+      //   }
+      //   var overlapping = false
+      //   for (var j = 0; j < objects.length; j++) {
+      //     var other = objects[j]
+      //     var dist = this.distance(object.x, object.y, other.x, other.y)
+      //     if (dist - radius * 2 < 0) {
+      //       overlapping = true
+      //     }
+      //   }
+      //   if (!overlapping) {
+      //     objects.push(object)
+      //   }
+      //   protect++
+      //   if (protect > 200000) {
+      //     break
+      //   }
+      // }
+      // for (var l = 0; l < objects.length; l++) {
+      //   this.divs[l].style.left = objects[l].x + 'px'
+      //   this.divs[l].style.top = objects[l].y + 'px'
+      // }
     } else {
       this.setPosition()
     }
@@ -241,14 +222,7 @@ export default {
   updated() {
     this.setPosition()
   },
-  computed: {
-    ...mapGetters(['getScrollDistance'])
-    // basics() {
-    //   return this.basic.filter(function(item) {
-    //     return item.type === 'basic'
-    //   })
-    // }
-  },
+  computed: {},
   methods: {
     randomActive(value) {
       if (value === 'on') {
@@ -313,30 +287,6 @@ export default {
           }
           this.divs[i].style.left = distance + '%'
           distance += 8
-        }
-
-        for (let i = 0; i < this.divs.length; i++) {
-          if (this.getScrollDistance < 708) {
-            this.kin[i].classList.remove('bounce-out')
-            this.kin[i].classList.add('fade-in')
-          } else if (this.getScrollDistance > 707) {
-            this.kin[i].classList.remove('fade-in')
-            this.kin[i].classList.add('bounce-out')
-            // document.getElementsByClassName('.bounce-out')[i].style.animation =
-            //   'unset'
-          }
-        }
-      } else {
-        for (let i = 0; i < this.divs.length; i++) {
-          if (this.getScrollDistance < 788) {
-            this.kin[i].classList.remove('bounce-out')
-            this.kin[i].classList.add('fade-in')
-          } else if (this.getScrollDistance > 787) {
-            this.kin[i].classList.remove('fade-in')
-            this.kin[i].classList.add('bounce-out')
-            // document.getElementsByClassName('.bounce-out')[i].style.animation =
-            //   'unset'
-          }
         }
       }
     },
@@ -578,7 +528,7 @@ export default {
 }
 .icon .elm img {
   animation: ctn ease-in-out 3s alternate infinite;
-  animation-delay: 3s;
+  // animation-delay: 3s;
 }
 .bounce-out {
   animation: bounceOut ease-in 3s 1 forwards;
