@@ -1,13 +1,15 @@
 <template>
   <div id="app" @mousemove="pointerAxis">
-    <div class="oye">
-      <h1>
-        Responsive feature is still under development
-      </h1>
-    </div>
     <div class="aye">
       <router-view />
-      <div id="pointer" :style="{ left: `${x}px`, top: `${y}px` }"></div>
+      <div
+        v-if="customCursor === true"
+        id="pointer"
+        :style="{ left: `${x}px`, top: `${y}px` }"
+      ></div>
+      <button class="cstm" @click="cursorFunc()" style="zIndex: 99;">
+        Customized cursor: <span>{{ btn }}</span>
+      </button>
     </div>
   </div>
 </template>
@@ -17,7 +19,9 @@ export default {
   data() {
     return {
       x: 0,
-      y: 0
+      y: 0,
+      customCursor: false,
+      btn: 'Off'
     }
   },
   computed: {},
@@ -25,6 +29,17 @@ export default {
     pointerAxis(event) {
       this.x = event.clientX
       this.y = event.clientY
+    },
+    cursorFunc() {
+      if (this.customCursor === true) {
+        document.getElementById('app').style.setProperty('cursor', 'auto')
+        this.btn = 'Off'
+        this.customCursor = false
+      } else {
+        this.customCursor = true
+        this.btn = 'On'
+        document.getElementById('app').style.setProperty('cursor', 'none')
+      }
     }
   }
 }
@@ -49,9 +64,21 @@ body::-webkit-scrollbar {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  cursor: none;
+  cursor: auto;
   min-height: 100vh;
   overflow: hidden;
+}
+#app .aye button.cstm {
+  border: 2px solid rgba(3, 172, 163, 0.527);
+  position: absolute;
+  top: 5px;
+  right: 0;
+  border-radius: 5px;
+  outline: none;
+  width: 100px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.26);
+  line-height: 15px;
 }
 #pointer {
   background-color: rgb(255, 255, 255);
@@ -73,24 +100,5 @@ body::-webkit-scrollbar {
   /* .aye {
     display: none;
   } */
-  .oye {
-    position: fixed;
-    top: 35%;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 88;
-  }
-  .oye h1 {
-    position: relative;
-    font-size: 24px;
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid black;
-  }
 }
 </style>
